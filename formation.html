@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation - FITAT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-sans: 'Montserrat', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            --gold-dark: #0a192f;
+            --gold-primary: #0d47a1;
+            --gold-light: #1565c0;
+            --bg-pure: #ffffff;
+            --bg-deep: #f8f9fa;
+            --text-light: #0a192f;
+            --text-muted: #546e7a;
+            --glass-border: rgba(13, 71, 161, 0.1);
+            --curve: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-pure);
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* --- HEADER --- */
+        .header-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.8rem 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-identity {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: var(--gold-primary);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            height: 58px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .brand-identity span {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            border-left: 1px solid rgba(13, 71, 161, 0.3);
+            padding-left: 12px;
+        }
+
+        .menu-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .menu-links a {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 400;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .menu-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        .menu-links a.btn-gold {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-light) 100%);
+            color: #ffffff;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(13, 71, 161, 0.2);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+        }
+
+        .menu-links a.btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(13, 71, 161, 0.35);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.6rem;
+            color: var(--gold-primary);
+            cursor: pointer;
+        }
+
+        /* --- BACK NAV --- */
+        .back-nav {
+            padding: 8rem 0 0;
+        }
+
+        .back-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .back-nav a:hover {
+            color: var(--gold-primary);
+        }
+
+        /* --- HERO --- */
+        .formation-hero {
+            position: relative;
+            min-height: 650px;
+            padding: 4rem 0 5rem;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .formation-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(5, 35, 75, 0.35);
+            z-index: 0;
+        }
+
+        .formation-hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .formation-icon {
+            display: none;
+        }
+
+        .formation-hero h1 {
+            font-family: var(--font-sans);
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .formation-hero p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .formation-hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s var(--curve);
+            border-radius: 50px;
+            min-height: 52px;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-light) 100%);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 15px rgba(13, 71, 161, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(13, 71, 161, 0.4);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* --- MAIN CONTENT --- */
+        .formation-content {
+            padding: 4rem 0 6rem;
+        }
+
+        .formation-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        .formation-section {
+            background: var(--bg-pure);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .formation-section h3 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .formation-section ul {
+            list-style: none;
+        }
+
+        .formation-section li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .formation-section li:last-child {
+            border-bottom: none;
+        }
+
+        .formation-section li i {
+            color: var(--gold-primary);
+            margin-top: 4px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, rgba(13, 71, 161, 0.03) 0%, rgba(22, 78, 99, 0.02) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            position: sticky;
+            top: 120px;
+        }
+
+        .info-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .formation-bottom-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            padding: 4rem 0 6rem;
+        }
+
+        .formation-bottom-buttons .btn-outline {
+            background: transparent;
+            color: var(--gold-primary);
+            border-color: var(--gold-primary);
+            backdrop-filter: none;
+        }
+
+        .formation-bottom-buttons .btn-outline:hover {
+            background: rgba(13, 71, 161, 0.05);
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        /* --- FOOTER --- */
+        .main-footer {
+            background: #0a192f;
+            padding: 5rem 0 3rem;
+            text-align: center;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--gold-primary);
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .menu-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+                padding: 2rem 0;
+                border-bottom: 1px solid var(--glass-border);
+            }
+
+            .menu-links.show {
+                display: flex;
+            }
+
+            .formation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-card {
+                position: static;
+            }
+
+            .formation-hero {
+                min-height: 550px;
+                padding: 3rem 0 4rem;
+            }
+
+            .formation-hero h1 {
+                font-size: 2rem;
+            }
+
+            .formation-hero p {
+                font-size: 1rem;
+                margin: 0 auto 2rem;
+            }
+
+            .formation-hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .formation-bottom-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="header-nav" id="mainNav">
+        <div class="container nav-flex">
+            <a href="index.html" class="brand-identity">
+                <img src="logo.jpg" alt="FITAT Logo" class="nav-logo">
+                <span>FITAT</span>
+            </a>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="menu-links">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#gallery">Réalisation</a>
+                <a href="index.html#about">À propos</a>
+                <a href="index.html#contact" class="btn btn-gold">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="back-nav">
+            <a href="index.html">
+                <i class="fas fa-arrow-left"></i>
+                Toutes les formations
+            </a>
+        </div>
+
+        <div class="formation-hero">
+            <div class="formation-icon" id="formationIcon">✂️</div>
+            <h1 id="formationTitle">Coiffure & Esthétique</h1>
+            <p id="formationDescription">Maîtrisez les techniques de coupe, de coloration et de soins esthétiques pour travailler en salon ou ouvrir le vôtre.</p>
+            <div class="formation-hero-buttons">
+                <a href="index.html#contact" class="btn btn-gold">S'inscrire</a>
+                <a href="tel:+212600000000" class="btn btn-outline">
+                    <i class="fas fa-phone" style="margin-right: 8px;"></i>
+                    Appeler le centre
+                </a>
+            </div>
+        </div>
+
+        <div class="formation-content">
+            <div class="formation-grid">
+                <div class="formation-left">
+                    <div class="formation-section">
+                        <h3>Programme de la formation</h3>
+                        <ul id="formationProgramme">
+                            <li><i class="fas fa-check"></i> Hygiène, sécurité et accueil client</li>
+                            <li><i class="fas fa-check"></i> Coupes femmes / hommes / enfants</li>
+                            <li><i class="fas fa-check"></i> Coloration, mèches, balayage et décoloration</li>
+                            <li><i class="fas fa-check"></i> Lissage, permanente et soins capillaires</li>
+                            <li><i class="fas fa-check"></i> Soins du visage, épilation et manucure</li>
+                            <li><i class="fas fa-check"></i> Maquillage jour, soirée et mariée</li>
+                            <li><i class="fas fa-check"></i> Coiffure événementielle et chignons</li>
+                            <li><i class="fas fa-check"></i> Gestion d'un salon : stock, tarifs, clientèle</li>
+                        </ul>
+                    </div>
+
+                    <div class="formation-section">
+                        <h3>Débouchés</h3>
+                        <ul id="formationDebouches">
+                            <li><i class="fas fa-briefcase"></i> Coiffeur(se) en salon</li>
+                            <li><i class="fas fa-briefcase"></i> Esthéticien(ne) en institut ou spa</li>
+                            <li><i class="fas fa-briefcase"></i> Maquilleur(se) événementiel</li>
+                            <li><i class="fas fa-briefcase"></i> Création de son propre salon</li>
+                        </ul>
+                    </div>
+
+                    <div class="formation-section">
+                        <h3>Conditions d'accès</h3>
+                        <ul id="formationConditions">
+                            <li><i class="fas fa-user-check"></i> Aucun diplôme exigé</li>
+                            <li><i class="fas fa-user-check"></i> Âge minimum : 16 ans</li>
+                            <li><i class="fas fa-user-check"></i> Motivation et sens du contact</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="formation-right">
+                    <div class="info-card">
+                        <h3>Informations pratiques</h3>
+                        <div class="info-item">
+                            <div class="info-label">Durée</div>
+                            <div class="info-value" id="infoDuree">6 à 12 mois</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Rythme</div>
+                            <div class="info-value" id="infoRythme">Lundi au vendredi · 9h-13h ou 14h-18h</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Niveau</div>
+                            <div class="info-value" id="infoNiveau">Débutant accepté</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Diplôme</div>
+                            <div class="info-value" id="infoDiplome">Diplôme de fin de formation + attestation de stage</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Effectif</div>
+                            <div class="info-value" id="infoEffectif">Groupes de 12 stagiaires maximum</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Tarif</div>
+                            <div class="info-value" id="infoTarif">Sur demande (facilités de paiement)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="formation-bottom-buttons">
+            <a href="index.html#contact" class="btn btn-gold">Demander une inscription</a>
+            <a href="index.html#gallery" class="btn btn-outline">Voir les réalisations</a>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#gallery">Réalisation</a>
+                <a href="index.html#about">À propos</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+            <p class="footer-copy">© 2024 FITAT Formation. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Formation data
+        const formations = {
+            coiffure: {
+                icon: '✂️',
+                title: 'Coiffure & Esthétique',
+                description: 'Maîtrisez les techniques de coupe, de coloration et de soins esthétiques pour travailler en salon ou ouvrir le vôtre.',
+                image: 'images/Coiffure%20%26%20Esth%C3%A9tique.png',
+                programme: [
+                    'Hygiène, sécurité et accueil client',
+                    'Coupes femmes / hommes / enfants',
+                    'Coloration, mèches, balayage et décoloration',
+                    'Lissage, permanente et soins capillaires',
+                    'Soins du visage, épilation et manucure',
+                    'Maquillage jour, soirée et mariée',
+                    'Coiffure événementielle et chignons',
+                    'Gestion d\'un salon : stock, tarifs, clientèle'
+                ],
+                debouches: [
+                    'Coiffeur(se) en salon',
+                    'Esthéticien(ne) en institut ou spa',
+                    'Maquilleur(se) événementiel',
+                    'Création de son propre salon'
+                ],
+                conditions: [
+                    'Aucun diplôme exigé',
+                    'Âge minimum : 16 ans',
+                    'Motivation et sens du contact'
+                ],
+                duree: '6 à 12 mois',
+                rythme: 'Lundi au vendredi · 9h-13h ou 14h-18h',
+                niveau: 'Débutant accepté',
+                diplome: 'Diplôme de fin de formation + attestation de stage',
+                effectif: 'Groupes de 12 stagiaires maximum',
+                tarif: 'Sur demande (facilités de paiement)'
+            },
+            couture: {
+                icon: '🧵',
+                title: 'Couture & Stylisme',
+                description: 'De la prise de mesures à la collection finie : apprenez le patronage, le montage et la création de modèles.',
+                image: 'images/Couture%20%26%20Stylisme.png',
+                programme: [
+                    'Machines, matières et fournitures',
+                    'Prise de mesures et tableau de tailles',
+                    'Patronage à plat et moulage',
+                    'Montage jupes, pantalons, robes, vestes',
+                    'Caftan et tenues traditionnelles',
+                    'Finitions, broderie et perlage',
+                    'Dessin de mode et planche tendance',
+                    'Création d\'une mini-collection de fin d\'année'
+                ],
+                debouches: [
+                    'Couturier(ère) en atelier',
+                    'Modéliste / patronnier(ère)',
+                    'Styliste indépendant(e)',
+                    'Atelier de retouches à son compte'
+                ],
+                conditions: [
+                    'Aucun prérequis technique',
+                    'Goût du travail manuel et de la précision'
+                ],
+                duree: '9 mois',
+                rythme: 'Ateliers pratiques · 4 jours / semaine',
+                niveau: 'Débutant à perfectionnement',
+                diplome: 'Diplôme de styliste-modéliste (fin de formation)',
+                effectif: 'Groupes de 15 stagiaires maximum',
+                tarif: 'Sur demande (facilités de paiement)'
+            },
+            patisserie: {
+                icon: '🍰',
+                title: 'Pâtisserie & Cuisine',
+                description: 'Bases professionnelles de la pâtisserie, de la viennoiserie et de la cuisine marocaine et internationale.',
+                image: 'images/P%C3%A2tisserie%20%26%20Cuisine.png',
+                programme: [
+                    'Hygiène alimentaire et HACCP',
+                    'Pâtes de base, crèmes et sauces',
+                    'Viennoiserie et boulangerie',
+                    'Gâteaux d\'anniversaire et layer cakes',
+                    'Pâtisserie marocaine et petits fours',
+                    'Chocolaterie et décor en sucre',
+                    'Cuisine marocaine et internationale',
+                    'Coût de revient, dressage et vente'
+                ],
+                debouches: [
+                    'Commis / chef de partie pâtisserie',
+                    'Boulanger-pâtissier',
+                    'Traiteur événementiel',
+                    'Vente à domicile / laboratoire'
+                ],
+                conditions: [
+                    'Aucun diplôme exigé',
+                    'Certificat médical d\'aptitude alimentaire'
+                ],
+                duree: '4 à 8 mois',
+                rythme: '3 à 5 séances pratiques par semaine',
+                niveau: 'Débutant accepté',
+                diplome: 'Certificat professionnel + stage en entreprise',
+                effectif: 'Groupes de 12 stagiaires maximum',
+                tarif: 'Sur demande (matières premières incluses)'
+            },
+            informatique: {
+                icon: '💻',
+                title: 'Informatique & Bureautique',
+                description: 'Devenez autonome sur l\'ordinateur : bureautique, infographie, web et réseaux sociaux professionnels.',
+                image: 'images/Informatique%20%26%20Bureautiqu.png',
+                programme: [
+                    'Windows, fichiers et Internet',
+                    'Word : courriers, rapports, mise en page',
+                    'Excel : formules, tableaux croisés, graphiques',
+                    'PowerPoint et présentation professionnelle',
+                    'Photoshop / Illustrator : bases infographie',
+                    'Création de site web (HTML, CSS, WordPress)',
+                    'Marketing digital et réseaux sociaux',
+                    'Projet final : identité visuelle + mini-site'
+                ],
+                debouches: [
+                    'Assistant(e) administratif / secrétariat',
+                    'Infographiste junior',
+                    'Community manager',
+                    'Freelance web & print'
+                ],
+                conditions: [
+                    'Savoir lire et écrire',
+                    'Aucune expérience informatique requise'
+                ],
+                duree: '3 à 6 mois',
+                rythme: 'Cours du soir possibles · 3 séances / semaine',
+                niveau: 'Débutant à intermédiaire',
+                diplome: 'Certificat de compétences bureautique & digital',
+                effectif: '1 poste par stagiaire',
+                tarif: 'Sur demande (paiement mensuel)'
+            },
+            electricite: {
+                icon: '⚡',
+                title: 'Électricité & Maintenance',
+                description: 'Formation 100% pratique en atelier : installation, dépannage, froid et climatisation.',
+                image: 'images/%C3%89lectricit%C3%A9%20%26%20Maintenanc.png',
+                programme: [
+                    'Électricité de base et lecture de schémas',
+                    'Installation domestique et tableau électrique',
+                    'Éclairage, prises et mise à la terre',
+                    'Moteurs, démarrages et armoires',
+                    'Froid domestique et climatisation split',
+                    'Diagnostic de panne et dépannage',
+                    'Sécurité, normes et habilitation',
+                    'Chantier d\'application encadré'
+                ],
+                debouches: [
+                    'Électricien bâtiment',
+                    'Technicien de maintenance',
+                    'Frigoriste / climatisation',
+                    'Artisan indépendant'
+                ],
+                conditions: [
+                    'Âge minimum : 17 ans',
+                    'Aptitude au travail manuel'
+                ],
+                duree: '6 mois',
+                rythme: 'Atelier 4 jours / semaine + théorie',
+                niveau: 'Débutant accepté',
+                diplome: 'Attestation professionnelle + habilitation sécurité',
+                effectif: 'Groupes de 10 stagiaires maximum',
+                tarif: 'Sur demande (outillage fourni)'
+            }
+        };
+
+        // Get formation from URL parameter
+        function getFormationFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const formationId = urlParams.get('f');
+            return formations[formationId] || formations.coiffure;
+        }
+
+        // Load formation data
+        function loadFormation() {
+            const formation = getFormationFromUrl();
+            
+            document.getElementById('formationIcon').textContent = formation.icon;
+            document.getElementById('formationTitle').textContent = formation.title;
+            document.getElementById('formationDescription').textContent = formation.description;
+            
+            // Set background image
+            if (formation.image) {
+                document.querySelector('.formation-hero').style.backgroundImage = `url('${formation.image}')`;
+            }
+            
+            // Load programme
+            const programmeList = document.getElementById('formationProgramme');
+            programmeList.innerHTML = formation.programme.map(item => 
+                `<li><i class="fas fa-check"></i> ${item}</li>`
+            ).join('');
+            
+            // Load debouches
+            const debouchesList = document.getElementById('formationDebouches');
+            debouchesList.innerHTML = formation.debouches.map(item => 
+                `<li><i class="fas fa-briefcase"></i> ${item}</li>`
+            ).join('');
+            
+            // Load conditions
+            const conditionsList = document.getElementById('formationConditions');
+            conditionsList.innerHTML = formation.conditions.map(item => 
+                `<li><i class="fas fa-user-check"></i> ${item}</li>`
+            ).join('');
+            
+            // Load info card
+            document.getElementById('infoDuree').textContent = formation.duree;
+            document.getElementById('infoRythme').textContent = formation.rythme;
+            document.getElementById('infoNiveau').textContent = formation.niveau;
+            document.getElementById('infoDiplome').textContent = formation.diplome;
+            document.getElementById('infoEffectif').textContent = formation.effectif;
+            document.getElementById('infoTarif').textContent = formation.tarif;
+        }
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            document.querySelector('.menu-links').classList.toggle('show');
+        }
+
+        // Load formation on page load
+        document.addEventListener('DOMContentLoaded', loadFormation);
+    </script>
+</body>
+</html>

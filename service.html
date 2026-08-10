@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service - FITAT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-sans: 'Montserrat', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            --gold-dark: #0a192f;
+            --gold-primary: #0d47a1;
+            --gold-light: #1565c0;
+            --bg-pure: #ffffff;
+            --bg-deep: #f8f9fa;
+            --text-light: #0a192f;
+            --text-muted: #546e7a;
+            --glass-border: rgba(13, 71, 161, 0.1);
+            --curve: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-pure);
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* --- HEADER --- */
+        .header-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.8rem 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-identity {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: var(--gold-primary);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            height: 58px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .brand-identity span {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            border-left: 1px solid rgba(13, 71, 161, 0.3);
+            padding-left: 12px;
+        }
+
+        .menu-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .menu-links a {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 400;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .menu-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        .menu-links a.btn-gold {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-light) 100%);
+            color: #ffffff;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(13, 71, 161, 0.2);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+        }
+
+        .menu-links a.btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(13, 71, 161, 0.35);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.6rem;
+            color: var(--gold-primary);
+            cursor: pointer;
+        }
+
+        /* --- BACK NAV --- */
+        .back-nav {
+            padding: 8rem 0 0;
+        }
+
+        .back-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .back-nav a:hover {
+            color: var(--gold-primary);
+        }
+
+        /* --- HERO --- */
+        .service-hero {
+            position: relative;
+            min-height: 650px;
+            padding: 4rem 0 5rem;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .service-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(5, 35, 75, 0.30);
+            z-index: 0;
+        }
+
+        .service-hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-hero h1 {
+            font-family: var(--font-sans);
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .service-hero p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .service-hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s var(--curve);
+            border-radius: 50px;
+            min-height: 52px;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-light) 100%);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 15px rgba(13, 71, 161, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(13, 71, 161, 0.4);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* --- MAIN CONTENT --- */
+        .service-content {
+            padding: 4rem 0 6rem;
+        }
+
+        .service-section {
+            background: var(--bg-pure);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-section h3 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-section p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-section ul {
+            list-style: none;
+        }
+
+        .service-section li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .service-section li:last-child {
+            border-bottom: none;
+        }
+
+        .service-section li i {
+            color: var(--gold-primary);
+            margin-top: 4px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(13, 71, 161, 0.03) 0%, rgba(22, 78, 99, 0.02) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+
+        .info-box h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-bottom-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            padding: 4rem 0 6rem;
+        }
+
+        .service-bottom-buttons .btn-outline {
+            background: transparent;
+            color: var(--gold-primary);
+            border-color: var(--gold-primary);
+            backdrop-filter: none;
+        }
+
+        .service-bottom-buttons .btn-outline:hover {
+            background: rgba(13, 71, 161, 0.05);
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        /* --- FOOTER --- */
+        .main-footer {
+            background: #0a192f;
+            padding: 5rem 0 3rem;
+            text-align: center;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--gold-primary);
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .menu-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+                padding: 2rem 0;
+                border-bottom: 1px solid var(--glass-border);
+            }
+
+            .menu-links.show {
+                display: flex;
+            }
+
+            .service-hero {
+                min-height: 550px;
+                padding: 3rem 0 4rem;
+            }
+
+            .service-icon {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .service-hero h1 {
+                font-size: 2rem;
+            }
+
+            .service-hero p {
+                font-size: 1rem;
+                margin: 0 auto 2rem;
+            }
+
+            .service-hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .service-bottom-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .service-section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="header-nav" id="mainNav">
+        <div class="container nav-flex">
+            <a href="index.html" class="brand-identity">
+                <img src="logo.jpg" alt="FITAT Logo" class="nav-logo">
+                <span>FITAT</span>
+            </a>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="menu-links">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#gallery">Réalisation</a>
+                <a href="index.html#about">À propos</a>
+                <a href="index.html#contact" class="btn btn-gold">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="back-nav">
+            <a href="index.html#services">
+                <i class="fas fa-arrow-left"></i>
+                Tous les services
+            </a>
+        </div>
+
+        <div class="service-hero">
+            <div class="service-icon" id="serviceIcon">💼</div>
+            <h1 id="serviceTitle">Bureau de consultation</h1>
+            <p id="serviceShortDescription">Conseil expert pour optimiser votre activité et atteindre vos objectifs professionnels.</p>
+            <div class="service-hero-buttons">
+                <a href="index.html#contact" class="btn btn-gold">Nous contacter</a>
+                <a href="tel:+212600000000" class="btn btn-outline">
+                    <i class="fas fa-phone" style="margin-right: 8px;"></i>
+                    Appeler
+                </a>
+            </div>
+        </div>
+
+        <div class="service-content">
+            <div class="service-section">
+                <h3>Description</h3>
+                <p id="serviceDescription">Notre bureau de consultation vous accompagne dans le développement de votre activité avec des conseils personnalisés et des stratégies adaptées à vos besoins.</p>
+            </div>
+
+            <div class="service-section">
+                <h3>Ce que nous proposons</h3>
+                <ul id="servicePropositions">
+                    <li><i class="fas fa-check"></i> Analyse de votre activité et identification des axes d'amélioration</li>
+                    <li><i class="fas fa-check"></i> Élaboration de stratégies de développement</li>
+                    <li><i class="fas fa-check"></i> Conseil en gestion et organisation</li>
+                    <li><i class="fas fa-check"></i> Accompagnement à la prise de décision</li>
+                    <li><i class="fas fa-check"></i> Suivi personnalisé et ajustement des stratégies</li>
+                    <li><i class="fas fa-check"></i> Formation aux meilleures pratiques du secteur</li>
+                </ul>
+            </div>
+
+            <div class="service-section">
+                <h3>Avantages</h3>
+                <ul id="serviceAvantages">
+                    <li><i class="fas fa-star"></i> Expertise sectorielle reconnue</li>
+                    <li><i class="fas fa-star"></i> Approche sur mesure</li>
+                    <li><i class="fas fa-star"></i> Résultats mesurables</li>
+                    <li><i class="fas fa-star"></i> Support continu</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h3>Informations</h3>
+                <p id="serviceInformations">Pour plus d'informations ou pour bénéficier de ce service, n'hésitez pas à nous contacter.</p>
+            </div>
+        </div>
+
+        <div class="service-bottom-buttons">
+            <a href="index.html#contact" class="btn btn-gold">Demander un devis</a>
+            <a href="index.html#services" class="btn btn-outline">Voir tous les services</a>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#gallery">Réalisation</a>
+                <a href="index.html#about">À propos</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+            <p class="footer-copy">© 2024 FITAT Formation. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Service data
+        const services = {
+            consultation: {
+                icon: '💼',
+                title: 'Bureau de consultation',
+                shortDescription: 'Conseil expert pour optimiser votre activité et atteindre vos objectifs professionnels.',
+                description: 'Notre bureau de consultation vous accompagne dans le développement de votre activité avec des conseils personnalisés et des stratégies adaptées à vos besoins.',
+                image: 'images/Bureau%20de%20consultation.png',
+                propositions: [
+                    'Analyse de votre activité et identification des axes d\'amélioration',
+                    'Élaboration de stratégies de développement',
+                    'Conseil en gestion et organisation',
+                    'Accompagnement à la prise de décision',
+                    'Suivi personnalisé et ajustement des stratégies',
+                    'Formation aux meilleures pratiques du secteur'
+                ],
+                avantages: [
+                    'Expertise sectorielle reconnue',
+                    'Approche sur mesure',
+                    'Résultats mesurables',
+                    'Support continu'
+                ],
+                informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+            },
+            formation: {
+                icon: '🎓',
+                title: 'Centre de formation',
+                shortDescription: 'Formations professionnelles certifiantes dans divers métiers pour booster votre carrière.',
+                description: 'Notre centre de formation propose des programmes complets et pratiques pour vous permettre d\'acquérir les compétences nécessaires à votre réussite professionnelle.',
+                image: 'images/Centre%20de%20formation.png',
+                propositions: [
+                    'Formations certifiantes reconnues',
+                    'Formateurs experts et expérimentés',
+                    'Approche pratique (70% de temps en atelier)',
+                    'Petits groupes pour un suivi personnalisé',
+                    'Stages en entreprise',
+                    'Aide à l\'insertion professionnelle'
+                ],
+                avantages: [
+                    'Diplômes et attestations reconnus',
+                    'Taux de réussite élevé (92%)',
+                    'Réseau de partenaires professionnels',
+                    'Suivi après formation'
+                ],
+                informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+            },
+            traiteur: {
+                icon: '🍽️',
+                title: 'Traiteur',
+                shortDescription: 'Services de traiteur premium pour vos événements, réceptions et célébrations.',
+                description: 'Notre service de traiteur vous propose une cuisine raffinée et personnalisée pour tous vos événements, des petites réunions aux grandes célébrations.',
+                image: 'images/Traiteur.png',
+                propositions: [
+                    'Menus personnalisés selon vos préférences',
+                    'Cuisine marocaine et internationale',
+                    'Service sur place ou livraison',
+                    'Équipements professionnels et personnel qualifié',
+                    'Respect des normes d\'hygiène',
+                    'Options pour tous les budgets'
+                ],
+                avantages: [
+                    'Qualité gastronomique garantie',
+                    'Flexibilité des menus',
+                    'Service professionnel',
+                    'Expérience événementielle'
+                ],
+                informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+            },
+            logiciel: {
+                icon: '💻',
+                title: 'Logiciel de gestion',
+                shortDescription: 'Solutions logicielles complètes pour gérer efficacement votre entreprise.',
+                description: 'Nos logiciels de gestion vous permettent d\'optimiser vos processus, de suivre votre activité en temps réel et de prendre des décisions éclairées.',
+                image: 'images/Logiciel%20de%20gestion.png',
+                propositions: [
+                    'Gestion des stocks et inventaires',
+                    'Facturation et comptabilité simplifiées',
+                    'Suivi des clients et prospects',
+                    'Tableaux de bord et reporting',
+                    'Gestion des ressources humaines',
+                    'Sécurité et sauvegarde des données'
+                ],
+                avantages: [
+                    'Gain de temps significatif',
+                    'Réduction des erreurs',
+                    'Meilleure visibilité sur l\'activité',
+                    'Support technique inclus'
+                ],
+                informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+            },
+            menus: {
+                icon: '📋',
+                title: 'Création des menus',
+                shortDescription: 'Élaboration de menus innovants et équilibrés pour restaurants et événements.',
+                description: 'Notre service de création de menus vous aide à concevoir des cartes attractives et rentables, adaptées à votre concept et à votre clientèle.',
+                image: 'images/Cr%C3%A9ation%20des%20menus.png',
+                propositions: [
+                    'Analyse de votre concept et clientèle cible',
+                    'Création de menus équilibrés et variés',
+                    'Calcul des coûts et marges',
+                    'Suggestions de saisonnalités',
+                    'Mise en page professionnelle',
+                    'Accompagnement pour la mise en œuvre'
+                ],
+                avantages: [
+                    'Menus attractifs et rentables',
+                    'Expertise culinaire',
+                    'Approche marketing',
+                    'Suivi des performances'
+                ],
+                informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+            }
+        };
+
+        // Get service from URL parameter
+        function getServiceFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceId = urlParams.get('s');
+            return services[serviceId] || services.consultation;
+        }
+
+        // Load service data
+        function loadService() {
+            const service = getServiceFromUrl();
+            
+            document.getElementById('serviceIcon').textContent = service.icon;
+            document.getElementById('serviceTitle').textContent = service.title;
+            document.getElementById('serviceShortDescription').textContent = service.shortDescription;
+            document.getElementById('serviceDescription').textContent = service.description;
+            
+            // Set background image
+            if (service.image) {
+                document.querySelector('.service-hero').style.backgroundImage = `url('${service.image}')`;
+            }
+            
+            // Load propositions
+            const propositionsList = document.getElementById('servicePropositions');
+            propositionsList.innerHTML = service.propositions.map(item => 
+                `<li><i class="fas fa-check"></i> ${item}</li>`
+            ).join('');
+            
+            // Load avantages
+            const avantagesList = document.getElementById('serviceAvantages');
+            avantagesList.innerHTML = service.avantages.map(item => 
+                `<li><i class="fas fa-star"></i> ${item}</li>`
+            ).join('');
+            
+            // Load informations
+            document.getElementById('serviceInformations').textContent = service.informations;
+        }
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            document.querySelector('.menu-links').classList.toggle('show');
+        }
+
+        // Load service on page load
+        document.addEventListener('DOMContentLoaded', loadService);
+    </script>
+</body>
+</html>
