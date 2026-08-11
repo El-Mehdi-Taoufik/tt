@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service - FITAT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --font-sans: 'Montserrat', sans-serif;
             --font-serif: 'Playfair Display', serif;
+            --font-arabic: 'Noto Kufi Arabic', sans-serif;
             --gold-dark: #0a192f;
             --gold-primary: #0d47a1;
             --gold-light: #1565c0;
@@ -80,10 +81,87 @@
         }
 
         .nav-logo {
-            height: 58px;
+            height: 45px;
             width: auto;
             object-fit: contain;
             display: block;
+            border-radius: 50%;
+        }
+
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 2rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(13, 71, 161, 0.2);
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        .lang-btn:hover {
+            background: rgba(13, 71, 161, 0.1);
+            color: var(--gold-primary);
+        }
+
+        .lang-btn.active {
+            background: var(--gold-primary);
+            color: #ffffff;
+            border-color: var(--gold-primary);
+        }
+
+        .lang-divider {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .menu-links {
+            flex-direction: row;
+        }
+
+        [dir="rtl"] .lang-switcher {
+            margin-right: 2rem;
+            margin-left: 0;
+        }
+
+        [dir="rtl"] .brand-identity {
+            flex-direction: row;
+        }
+
+        [dir="rtl"] .brand-identity span {
+            border-left: 1px solid rgba(13, 71, 161, 0.3);
+            border-right: none;
+            padding-left: 12px;
+            padding-right: 0;
+        }
+
+        [dir="rtl"] .nav-flex {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .service-split {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        [dir="rtl"] .service-info {
+            text-align: right;
+        }
+
+        [dir="rtl"] .service-bottom-buttons {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .back-nav {
+            flex-direction: row-reverse;
         }
 
         .brand-identity span {
@@ -448,18 +526,23 @@
                 <i class="fas fa-bars"></i>
             </div>
             <div class="menu-links">
-                <a href="index.html">Accueil</a>
-                <a href="index.html#services">Services</a>
-                <a href="index.html#gallery">Réalisation</a>
-                <a href="index.html#about">À propos</a>
-                <a href="index.html#contact" class="btn btn-gold">Contact</a>
+                <a href="index.html" data-i18n="nav.home">Accueil</a>
+                <a href="index.html#services" data-i18n="nav.services">Services</a>
+                <a href="index.html#gallery" data-i18n="nav.gallery">Réalisation</a>
+                <a href="index.html#about" data-i18n="nav.about">À propos</a>
+                <a href="index.html#contact" class="btn btn-gold" data-i18n="nav.contact">Contact</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="fr" onclick="switchLanguage('fr')">FR</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="ar" onclick="switchLanguage('ar')">العربية</button>
+                </div>
             </div>
         </div>
     </nav>
 
     <div class="container">
         <div class="back-nav">
-            <a href="index.html#services">
+            <a href="index.html#services" data-i18n="back.services">
                 <i class="fas fa-arrow-left"></i>
                 Tous les services
             </a>
@@ -467,25 +550,25 @@
 
         <div class="service-hero">
             <div class="service-icon" id="serviceIcon">💼</div>
-            <h1 id="serviceTitle">Bureau de consultation</h1>
-            <p id="serviceShortDescription">Conseil expert pour optimiser votre activité et atteindre vos objectifs professionnels.</p>
+            <h1 id="serviceTitle" data-i18n="service.title">Bureau de consultation</h1>
+            <p id="serviceShortDescription" data-i18n="service.shortDesc">Conseil expert pour optimiser votre activité et atteindre vos objectifs professionnels.</p>
             <div class="service-hero-buttons">
-                <a href="index.html#contact" class="btn btn-gold">Nous contacter</a>
+                <a href="index.html#contact" class="btn btn-gold" data-i18n="service.contact">Nous contacter</a>
                 <a href="tel:+212600000000" class="btn btn-outline">
                     <i class="fas fa-phone" style="margin-right: 8px;"></i>
-                    Appeler
+                    <span data-i18n="service.call">Appeler</span>
                 </a>
             </div>
         </div>
 
         <div class="service-content">
             <div class="service-section">
-                <h3>Description</h3>
-                <p id="serviceDescription">Notre bureau de consultation vous accompagne dans le développement de votre activité avec des conseils personnalisés et des stratégies adaptées à vos besoins.</p>
+                <h3 data-i18n="service.descriptionTitle">Description</h3>
+                <p id="serviceDescription" data-i18n="service.description">Notre bureau de consultation vous accompagne dans le développement de votre activité avec des conseils personnalisés et des stratégies adaptées à vos besoins.</p>
             </div>
 
             <div class="service-section">
-                <h3>Ce que nous proposons</h3>
+                <h3 data-i18n="service.propositionsTitle">Ce que nous proposons</h3>
                 <ul id="servicePropositions">
                     <li><i class="fas fa-check"></i> Analyse de votre activité et identification des axes d'amélioration</li>
                     <li><i class="fas fa-check"></i> Élaboration de stratégies de développement</li>
@@ -497,7 +580,7 @@
             </div>
 
             <div class="service-section">
-                <h3>Avantages</h3>
+                <h3 data-i18n="service.advantagesTitle">Avantages</h3>
                 <ul id="serviceAvantages">
                     <li><i class="fas fa-star"></i> Expertise sectorielle reconnue</li>
                     <li><i class="fas fa-star"></i> Approche sur mesure</li>
@@ -507,27 +590,27 @@
             </div>
 
             <div class="info-box">
-                <h3>Informations</h3>
-                <p id="serviceInformations">Pour plus d'informations ou pour bénéficier de ce service, n'hésitez pas à nous contacter.</p>
+                <h3 data-i18n="service.infoTitle">Informations</h3>
+                <p id="serviceInformations" data-i18n="service.info">Pour plus d'informations ou pour bénéficier de ce service, n'hésitez pas à nous contacter.</p>
             </div>
         </div>
 
         <div class="service-bottom-buttons">
-            <a href="index.html#contact" class="btn btn-gold">Demander un devis</a>
-            <a href="index.html#services" class="btn btn-outline">Voir tous les services</a>
+            <a href="index.html#contact" class="btn btn-gold" data-i18n="service.quote">Demander un devis</a>
+            <a href="index.html#services" class="btn btn-outline" data-i18n="back.services">Voir tous les services</a>
         </div>
     </div>
 
     <footer class="main-footer">
         <div class="container">
             <nav class="footer-nav">
-                <a href="index.html">Accueil</a>
-                <a href="index.html#services">Services</a>
-                <a href="index.html#gallery">Réalisation</a>
-                <a href="index.html#about">À propos</a>
-                <a href="index.html#contact">Contact</a>
+                <a href="index.html" data-i18n="nav.home">Accueil</a>
+                <a href="index.html#services" data-i18n="nav.services">Services</a>
+                <a href="index.html#gallery" data-i18n="nav.gallery">Réalisation</a>
+                <a href="index.html#about" data-i18n="nav.about">À propos</a>
+                <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
             </nav>
-            <p class="footer-copy">© 2024 FITAT Formation. Tous droits réservés.</p>
+            <p class="footer-copy" data-i18n="footer.copy">© 2024 FITAT Formation. Tous droits réservés.</p>
         </div>
     </footer>
 
@@ -536,113 +619,228 @@
         const services = {
             consultation: {
                 icon: '💼',
-                title: 'Bureau de consultation',
-                shortDescription: 'Conseil expert pour optimiser votre activité et atteindre vos objectifs professionnels.',
-                description: 'Notre bureau de consultation vous accompagne dans le développement de votre activité avec des conseils personnalisés et des stratégies adaptées à vos besoins.',
-                image: 'images/Bureau%20de%20consultation.png',
-                propositions: [
-                    'Analyse de votre activité et identification des axes d\'amélioration',
-                    'Élaboration de stratégies de développement',
-                    'Conseil en gestion et organisation',
-                    'Accompagnement à la prise de décision',
-                    'Suivi personnalisé et ajustement des stratégies',
-                    'Formation aux meilleures pratiques du secteur'
-                ],
-                avantages: [
-                    'Expertise sectorielle reconnue',
-                    'Approche sur mesure',
-                    'Résultats mesurables',
-                    'Support continu'
-                ],
-                informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+                fr: {
+                    title: 'Bureau de consultation',
+                    shortDescription: 'Conseil expert pour optimiser votre activité et atteindre vos objectifs professionnels.',
+                    description: 'Notre bureau de consultation vous accompagne dans le développement de votre activité avec des conseils personnalisés et des stratégies adaptées à vos besoins.',
+                    image: 'images/Bureau%20de%20consultation.png',
+                    propositions: [
+                        'Analyse de votre activité et identification des axes d\'amélioration',
+                        'Élaboration de stratégies de développement',
+                        'Conseil en gestion et organisation',
+                        'Accompagnement à la prise de décision',
+                        'Suivi personnalisé et ajustement des stratégies',
+                        'Formation aux meilleures pratiques du secteur'
+                    ],
+                    avantages: [
+                        'Expertise sectorielle reconnue',
+                        'Approche sur mesure',
+                        'Résultats mesurables',
+                        'Support continu'
+                    ],
+                    informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+                },
+                ar: {
+                    title: 'مكتب الاستشارات',
+                    shortDescription: 'استشارة خبير لتحسين نشاطك وتحقيق أهدافك المهنية.',
+                    description: 'يرافقك مكتب الاستشارات لدينا في تطوير نشاطك بنصائح مخصصة واستراتيجيات متكيفة مع احتياجاتك.',
+                    image: 'images/Bureau%20de%20consultation.png',
+                    propositions: [
+                        'تحليل نشاطك وتحديد محاور التحسين',
+                        'وضع استراتيجيات التطوير',
+                        'الاستشارة في الإدارة والتنظيم',
+                        'المرافقة في اتخاذ القرارات',
+                        'المتابعة الشخصية وتعديل الاستراتيجيات',
+                        'التدريب على أفضل ممارسات القطاع'
+                    ],
+                    avantages: [
+                        'خبرة قطاعية معترف بها',
+                        'نهج مخصص',
+                        'نتائج قابلة للقياس',
+                        'دعم مستمر'
+                    ],
+                    informations: 'لمزيد من المعلومات أو للاستفادة من هذه الخدمة، لا تتردد في الاتصال بنا.'
+                }
             },
             formation: {
                 icon: '🎓',
-                title: 'Centre de formation',
-                shortDescription: 'Formations professionnelles certifiantes dans divers métiers pour booster votre carrière.',
-                description: 'Notre centre de formation propose des programmes complets et pratiques pour vous permettre d\'acquérir les compétences nécessaires à votre réussite professionnelle.',
-                image: 'images/Centre%20de%20formation.png',
-                propositions: [
-                    'Formations certifiantes reconnues',
-                    'Formateurs experts et expérimentés',
-                    'Approche pratique (70% de temps en atelier)',
-                    'Petits groupes pour un suivi personnalisé',
-                    'Stages en entreprise',
-                    'Aide à l\'insertion professionnelle'
-                ],
-                avantages: [
-                    'Diplômes et attestations reconnus',
-                    'Taux de réussite élevé (92%)',
-                    'Réseau de partenaires professionnels',
-                    'Suivi après formation'
-                ],
-                informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+                fr: {
+                    title: 'Centre de formation',
+                    shortDescription: 'Formations professionnelles certifiantes dans divers métiers pour booster votre carrière.',
+                    description: 'Notre centre de formation propose des programmes complets et pratiques pour vous permettre d\'acquérir les compétences nécessaires à votre réussite professionnelle.',
+                    image: 'images/Centre%20de%20formation.png',
+                    propositions: [
+                        'Formations certifiantes reconnues',
+                        'Formateurs experts et expérimentés',
+                        'Approche pratique (70% de temps en atelier)',
+                        'Petits groupes pour un suivi personnalisé',
+                        'Stages en entreprise',
+                        'Aide à l\'insertion professionnelle'
+                    ],
+                    avantages: [
+                        'Diplômes et attestations reconnus',
+                        'Taux de réussite élevé (92%)',
+                        'Réseau de partenaires professionnels',
+                        'Suivi après formation'
+                    ],
+                    informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+                },
+                ar: {
+                    title: 'مركز التكوين',
+                    shortDescription: 'تكوينات مهنية معتمدة في مختلف المهن لتعزيز مسيرتك المهنية.',
+                    description: 'يقدم مركز التكوين لدينا برامج كاملة وعملية تتيح لك اكتساب المهارات اللازمة لنجاحك المهني.',
+                    image: 'images/Centre%20de%20formation.png',
+                    propositions: [
+                        'تكوينات معتمدة معترف بها',
+                        'مدربون خبراء ومتمرسون',
+                        'نهج عملي (70% من الوقت في الورشة)',
+                        'مجموعات صغيرة لمتابعة شخصية',
+                        'تدريب في الشركات',
+                        'المساعدة على الإدماج المهني'
+                    ],
+                    avantages: [
+                        'دبلومات وشهادات معترف بها',
+                        'معدل نجاح مرتفع (92%)',
+                        'شبكة من الشركاء المهنيين',
+                        'متابعة بعد التكوين'
+                    ],
+                    informations: 'لمزيد من المعلومات أو للاستفادة من هذه الخدمة، لا تتردد في الاتصال بنا.'
+                }
             },
             traiteur: {
                 icon: '🍽️',
-                title: 'Traiteur',
-                shortDescription: 'Services de traiteur premium pour vos événements, réceptions et célébrations.',
-                description: 'Notre service de traiteur vous propose une cuisine raffinée et personnalisée pour tous vos événements, des petites réunions aux grandes célébrations.',
-                image: 'images/Traiteur.png',
-                propositions: [
-                    'Menus personnalisés selon vos préférences',
-                    'Cuisine marocaine et internationale',
-                    'Service sur place ou livraison',
-                    'Équipements professionnels et personnel qualifié',
-                    'Respect des normes d\'hygiène',
-                    'Options pour tous les budgets'
-                ],
-                avantages: [
-                    'Qualité gastronomique garantie',
-                    'Flexibilité des menus',
-                    'Service professionnel',
-                    'Expérience événementielle'
-                ],
-                informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+                fr: {
+                    title: 'Traiteur',
+                    shortDescription: 'Services de traiteur premium pour vos événements, réceptions et célébrations.',
+                    description: 'Notre service de traiteur vous propose une cuisine raffinée et personnalisée pour tous vos événements, des petites réunions aux grandes célébrations.',
+                    image: 'images/Traiteur.png',
+                    propositions: [
+                        'Menus personnalisés selon vos préférences',
+                        'Cuisine marocaine et internationale',
+                        'Service sur place ou livraison',
+                        'Équipements professionnels et personnel qualifié',
+                        'Respect des normes d\'hygiène',
+                        'Options pour tous les budgets'
+                    ],
+                    avantages: [
+                        'Qualité gastronomique garantie',
+                        'Flexibilité des menus',
+                        'Service professionnel',
+                        'Expérience événementielle'
+                    ],
+                    informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+                },
+                ar: {
+                    title: 'التموين',
+                    shortDescription: 'خدمات تموين راقية لفعالياتك واستقبالاتك واحتفالاتك.',
+                    description: 'يقدم خدمة التموين لدينا مطبخاً رفيعاً ومخصصاً لجميع فعالياتك، من الاجتماعات الصغيرة إلى الاحتفالات الكبيرة.',
+                    image: 'images/Traiteur.png',
+                    propositions: [
+                        'قوائم مخصصة حسب تفضيلاتك',
+                        'مطبخ مغربي ودولي',
+                        'خدمة في المكان أو التوصيل',
+                        'معدات مهنية وط personnel مؤهل',
+                        'احترام معايير النظافة',
+                        'خيارات لجميع الميزانيات'
+                    ],
+                    avantages: [
+                        'جودة طهوية مضمونة',
+                        'مرونة القوائم',
+                        'خدمة مهنية',
+                        'خبرة في الفعاليات'
+                    ],
+                    informations: 'لمزيد من المعلومات أو للاستفادة من هذه الخدمة، لا تتردد في الاتصال بنا.'
+                }
             },
             logiciel: {
                 icon: '💻',
-                title: 'Logiciel de gestion',
-                shortDescription: 'Solutions logicielles complètes pour gérer efficacement votre entreprise.',
-                description: 'Nos logiciels de gestion vous permettent d\'optimiser vos processus, de suivre votre activité en temps réel et de prendre des décisions éclairées.',
-                image: 'images/Logiciel%20de%20gestion.png',
-                propositions: [
-                    'Gestion des stocks et inventaires',
-                    'Facturation et comptabilité simplifiées',
-                    'Suivi des clients et prospects',
-                    'Tableaux de bord et reporting',
-                    'Gestion des ressources humaines',
-                    'Sécurité et sauvegarde des données'
-                ],
-                avantages: [
-                    'Gain de temps significatif',
-                    'Réduction des erreurs',
-                    'Meilleure visibilité sur l\'activité',
-                    'Support technique inclus'
-                ],
-                informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+                fr: {
+                    title: 'Logiciel de gestion',
+                    shortDescription: 'Solutions logicielles complètes pour gérer efficacement votre entreprise.',
+                    description: 'Nos logiciels de gestion vous permettent d\'optimiser vos processus, de suivre votre activité en temps réel et de prendre des décisions éclairées.',
+                    image: 'images/Logiciel%20de%20gestion.png',
+                    propositions: [
+                        'Gestion des stocks et inventaires',
+                        'Facturation et comptabilité simplifiées',
+                        'Suivi des clients et prospects',
+                        'Tableaux de bord et reporting',
+                        'Gestion des ressources humaines',
+                        'Sécurité et sauvegarde des données'
+                    ],
+                    avantages: [
+                        'Gain de temps significatif',
+                        'Réduction des erreurs',
+                        'Meilleure visibilité sur l\'activité',
+                        'Support technique inclus'
+                    ],
+                    informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+                },
+                ar: {
+                    title: 'برنامج الإدارة',
+                    shortDescription: 'حلول برمجية كاملة لإدارة شركتك بفعالية.',
+                    description: 'تتيح لك برامج الإدارة لدينا تحسين عملياتك، ومتابعة نشاطك في الوقت الفعلي، واتخاذ قرارات مستنيرة.',
+                    image: 'images/Logiciel%20de%20gestion.png',
+                    propositions: [
+                        'إدارة المخزون والمخزونات',
+                        'الفوترة والمحاسبة المبسطة',
+                        'متابعة العملاء والعملاء المحتملين',
+                        'لوحات القيادة والتقارير',
+                        'إدارة الموارد البشرية',
+                        'الأمان وحفظ البيانات'
+                    ],
+                    avantages: [
+                        'توفير وقت كبير',
+                        'تقليل الأخطاء',
+                        'رؤية أفضل للنشاط',
+                        'دعم تقني مشمول'
+                    ],
+                    informations: 'لمزيد من المعلومات أو للاستفادة من هذه الخدمة، لا تتردد في الاتصال بنا.'
+                }
             },
             menus: {
                 icon: '📋',
-                title: 'Création des menus',
-                shortDescription: 'Élaboration de menus innovants et équilibrés pour restaurants et événements.',
-                description: 'Notre service de création de menus vous aide à concevoir des cartes attractives et rentables, adaptées à votre concept et à votre clientèle.',
-                image: 'images/Cr%C3%A9ation%20des%20menus.png',
-                propositions: [
-                    'Analyse de votre concept et clientèle cible',
-                    'Création de menus équilibrés et variés',
-                    'Calcul des coûts et marges',
-                    'Suggestions de saisonnalités',
-                    'Mise en page professionnelle',
-                    'Accompagnement pour la mise en œuvre'
-                ],
-                avantages: [
-                    'Menus attractifs et rentables',
-                    'Expertise culinaire',
-                    'Approche marketing',
-                    'Suivi des performances'
-                ],
-                informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+                fr: {
+                    title: 'Création des menus',
+                    shortDescription: 'Élaboration de menus innovants et équilibrés pour restaurants et événements.',
+                    description: 'Notre service de création de menus vous aide à concevoir des cartes attractives et rentables, adaptées à votre concept et à votre clientèle.',
+                    image: 'images/Cr%C3%A9ation%20des%20menus.png',
+                    propositions: [
+                        'Analyse de votre concept et clientèle cible',
+                        'Création de menus équilibrés et variés',
+                        'Calcul des coûts et marges',
+                        'Suggestions de saisonnalités',
+                        'Mise en page professionnelle',
+                        'Accompagnement pour la mise en œuvre'
+                    ],
+                    avantages: [
+                        'Menus attractifs et rentables',
+                        'Expertise culinaire',
+                        'Approche marketing',
+                        'Suivi des performances'
+                    ],
+                    informations: 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.'
+                },
+                ar: {
+                    title: 'إنشاء القوائم',
+                    shortDescription: 'صياغة قوائم طعام مبتكرة ومتوازنة للمطاعم والفعاليات.',
+                    description: 'يساعدك خدمة إنشاء القوائم لدينا على تصميم بطاقات جذابة ومربحة، متكيفة مع مفهومك وعملائك.',
+                    image: 'images/Cr%C3%A9ation%20des%20menus.png',
+                    propositions: [
+                        'تحليل مفهوم مشروعك والعملاء المستهدفين',
+                        'إنشاء قوائم طعام متوازنة ومتنوعة',
+                        'حساب التكاليف وهوامش الربح',
+                        'اقتراح المنتجات والمكونات حسب المواسم',
+                        'تصميم وتنسيق احترافي للقائمة',
+                        'المواكبة والدعم أثناء تنفيذ المشروع'
+                    ],
+                    avantages: [
+                        'قوائم جذابة ومربحة',
+                        'خبرة طهوية',
+                        'نهج تسويقي',
+                        'متابعة الأداء'
+                    ],
+                    informations: 'لمزيد من المعلومات أو للاستفادة من هذه الخدمة، لا تتردد في الاتصال بنا.'
+                }
             }
         };
 
@@ -656,37 +854,128 @@
         // Load service data
         function loadService() {
             const service = getServiceFromUrl();
+            const langData = service[currentLang] || service.fr;
             
             document.getElementById('serviceIcon').textContent = service.icon;
-            document.getElementById('serviceTitle').textContent = service.title;
-            document.getElementById('serviceShortDescription').textContent = service.shortDescription;
-            document.getElementById('serviceDescription').textContent = service.description;
+            document.getElementById('serviceTitle').textContent = langData.title;
+            document.getElementById('serviceShortDescription').textContent = langData.shortDescription;
+            document.getElementById('serviceDescription').textContent = langData.description;
             
             // Set background image
-            if (service.image) {
-                document.querySelector('.service-hero').style.backgroundImage = `url('${service.image}')`;
+            if (langData.image) {
+                document.querySelector('.service-hero').style.backgroundImage = `url('${langData.image}')`;
             }
             
             // Load propositions
             const propositionsList = document.getElementById('servicePropositions');
-            propositionsList.innerHTML = service.propositions.map(item => 
+            propositionsList.innerHTML = langData.propositions.map(item => 
                 `<li><i class="fas fa-check"></i> ${item}</li>`
             ).join('');
             
             // Load avantages
             const avantagesList = document.getElementById('serviceAvantages');
-            avantagesList.innerHTML = service.avantages.map(item => 
+            avantagesList.innerHTML = langData.avantages.map(item => 
                 `<li><i class="fas fa-star"></i> ${item}</li>`
             ).join('');
             
             // Load informations
-            document.getElementById('serviceInformations').textContent = service.informations;
+            document.getElementById('serviceInformations').textContent = langData.informations;
         }
 
         // Toggle mobile menu
         function toggleMenu() {
             document.querySelector('.menu-links').classList.toggle('show');
         }
+
+        // Language Translation System
+        const translations = {
+            fr: {
+                'nav.home': 'Accueil',
+                'nav.services': 'Services',
+                'nav.gallery': 'Réalisation',
+                'nav.about': 'À propos',
+                'nav.contact': 'Contact',
+                'back.services': 'Tous les services',
+                'service.title': 'Bureau de consultation',
+                'service.shortDesc': 'Conseil expert pour optimiser votre activité et atteindre vos objectifs professionnels.',
+                'service.contact': 'Nous contacter',
+                'service.call': 'Appeler',
+                'service.descriptionTitle': 'Description',
+                'service.description': 'Notre bureau de consultation vous accompagne dans le développement de votre activité avec des conseils personnalisés et des stratégies adaptées à vos besoins.',
+                'service.propositionsTitle': 'Ce que nous proposons',
+                'service.advantagesTitle': 'Avantages',
+                'service.infoTitle': 'Informations',
+                'service.info': 'Pour plus d\'informations ou pour bénéficier de ce service, n\'hésitez pas à nous contacter.',
+                'service.quote': 'Demander un devis',
+                'footer.copy': '© 2024 FITAT Formation. Tous droits réservés.'
+            },
+            ar: {
+                'nav.home': 'الرئيسية',
+                'nav.services': 'الخدمات',
+                'nav.gallery': 'الإنجازات',
+                'nav.about': 'من نحن',
+                'nav.contact': 'اتصل بنا',
+                'back.services': 'جميع الخدمات',
+                'service.title': 'مكتب الاستشارات',
+                'service.shortDesc': 'استشارة خبير لتحسين نشاطك وتحقيق أهدافك المهنية.',
+                'service.contact': 'اتصل بنا',
+                'service.call': 'اتصل',
+                'service.descriptionTitle': 'الوصف',
+                'service.description': 'يرافقك مكتب الاستشارات لدينا في تطوير نشاطك بنصائح مخصصة واستراتيجيات متكيفة مع احتياجاتك.',
+                'service.propositionsTitle': 'ما نقدمه',
+                'service.advantagesTitle': 'المزايا',
+                'service.infoTitle': 'معلومات',
+                'service.info': 'لمزيد من المعلومات أو للاستفادة من هذه الخدمة، لا تتردد في الاتصال بنا.',
+                'service.quote': 'طلب عرض سعر',
+                'footer.copy': '© 2024 فيات التكوين. جميع الحقوق محفوظة.'
+            }
+        };
+
+        let currentLang = 'fr';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const html = document.documentElement;
+            
+            // Update HTML lang and dir attributes
+            html.setAttribute('lang', lang);
+            html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            
+            // Update font family for Arabic
+            if (lang === 'ar') {
+                document.body.style.fontFamily = 'var(--font-arabic), var(--font-sans), sans-serif';
+            } else {
+                document.body.style.fontFamily = 'var(--font-sans), sans-serif';
+            }
+            
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.dataset.i18n;
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            
+            // Reload service data with new language
+            loadService();
+            
+            // Save language preference to localStorage
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'fr';
+            switchLanguage(savedLang);
+        });
 
         // Load service on page load
         document.addEventListener('DOMContentLoaded', loadService);

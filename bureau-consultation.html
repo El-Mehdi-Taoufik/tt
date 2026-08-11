@@ -6,7 +6,7 @@
     <title>Bureau de consultation | FITAT</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Montserrat:wght@200;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Montserrat:wght@200;400;500;600&family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -23,6 +23,7 @@
             --glass-border: rgba(13, 71, 161, 0.15);
             --font-serif: 'Cormorant Garamond', serif;
             --font-sans: 'Montserrat', sans-serif;
+            --font-arabic: 'Noto Kufi Arabic', sans-serif;
             --curve: cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -117,10 +118,91 @@
             gap: 12px;
         }
         .nav-logo{
-            height: 58px;
+            height: 45px;
             width: auto;
             object-fit: contain;
             display: block;
+            border-radius: 50%;
+        }
+
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 2rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(13, 71, 161, 0.2);
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        .lang-btn:hover {
+            background: rgba(13, 71, 161, 0.1);
+            color: var(--gold-primary);
+        }
+
+        .lang-btn.active {
+            background: var(--gold-primary);
+            color: #ffffff;
+            border-color: var(--gold-primary);
+        }
+
+        .lang-divider {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .menu-links {
+            flex-direction: row;
+        }
+
+        [dir="rtl"] .lang-switcher {
+            margin-right: 2rem;
+            margin-left: 0;
+        }
+
+        [dir="rtl"] .brand-identity {
+            flex-direction: row;
+        }
+
+        [dir="rtl"] .brand-identity span {
+            border-left: 1px solid rgba(13, 71, 161, 0.3);
+            border-right: none;
+            padding-left: 12px;
+            padding-right: 0;
+        }
+
+        [dir="rtl"] .nav-flex {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .hero-split {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        [dir="rtl"] .hero-content {
+            text-align: right;
+        }
+
+        [dir="rtl"] .feature-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        [dir="rtl"] .feature-card {
+            text-align: right;
+        }
+
+        [dir="rtl"] .back-nav {
+            flex-direction: row-reverse;
         }
 
         .brand-identity span {
@@ -639,11 +721,16 @@
                 <i class="fas fa-bars"></i>
             </div>
             <div class="menu-links">
-                <a href="index.html#hero">Accueil</a>
-                <a href="index.html#services">Services</a>
-                <a href="realisations.html">Réalisation</a>
-                <a href="index.html#about">À propos</a>
-                <a href="index.html#contact">Contact</a>
+                <a href="index.html#hero" data-i18n="nav.home">Accueil</a>
+                <a href="index.html#services" data-i18n="nav.services">Services</a>
+                <a href="realisations.html" data-i18n="nav.gallery">Réalisation</a>
+                <a href="index.html#about" data-i18n="nav.about">À propos</a>
+                <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="fr" onclick="switchLanguage('fr')">FR</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="ar" onclick="switchLanguage('ar')">العربية</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -652,7 +739,7 @@
         <div class="container">
             
             <div class="back-nav">
-                <a href="index.html#services">
+                <a href="index.html#services" data-i18n="back.services">
                     <i class="fas fa-arrow-left"></i>
                     Tous les services
                 </a>
@@ -660,84 +747,84 @@
 
             <div class="service-hero" style="background-image: url('images/Bureau%20de%20consultation.png');">
                 <div class="icon">💼</div>
-                <h1>Bureau de consultation</h1>
-                <p class="subtitle">
+                <h1 data-i18n="service.title">Bureau de consultation</h1>
+                <p class="subtitle" data-i18n="service.subtitle">
                     Un accompagnement stratégique pour structurer, développer et pérenniser votre activité.
                 </p>
                 <div class="service-hero-buttons">
-                    <a href="index.html#contact" class="btn btn-gold">Demander un devis</a>
+                    <a href="index.html#contact" class="btn btn-gold" data-i18n="service.quote">Demander un devis</a>
                     <a href="tel:+212600000000" class="btn btn-outline">
                         <i class="fas fa-phone" style="margin-right: 8px;"></i>
-                        Appeler le centre
+                        <span data-i18n="service.call">Appeler le centre</span>
                     </a>
                 </div>
             </div>
 
             <div class="service-section">
-                <h2>Présentation</h2>
-                <p>
+                <h2 data-i18n="service.presentation">Présentation</h2>
+                <p data-i18n="service.p1">
                     Notre bureau de consultation accompagne les entrepreneurs, restaurateurs, traiteurs et centres de formation dans la structuration et le développement de leur activité, de l'idée jusqu'au pilotage quotidien.
                 </p>
-                <p>
+                <p data-i18n="service.p2">
                     Chaque mission commence par un diagnostic complet de votre organisation afin d'identifier les leviers de croissance et les points à améliorer, avant de construire ensemble un plan d'action réaliste et chiffré.
                 </p>
             </div>
 
             <div class="service-section">
-                <h2>Ce que nous proposons</h2>
+                <h2 data-i18n="service.propositionsTitle">Ce que nous proposons</h2>
                 <ul class="service-list">
                     <li>
                         <i class="fas fa-check"></i>
-                        <span>Diagnostic et audit d'entreprise</span>
+                        <span data-i18n="service.prop1">Diagnostic et audit d'entreprise</span>
                     </li>
                     <li>
                         <i class="fas fa-check"></i>
-                        <span>Étude de marché et positionnement</span>
+                        <span data-i18n="service.prop2">Étude de marché et positionnement</span>
                     </li>
                     <li>
                         <i class="fas fa-check"></i>
-                        <span>Accompagnement à la création d'entreprise</span>
+                        <span data-i18n="service.prop3">Accompagnement à la création d'entreprise</span>
                     </li>
                     <li>
                         <i class="fas fa-check"></i>
-                        <span>Optimisation des processus internes</span>
+                        <span data-i18n="service.prop4">Optimisation des processus internes</span>
                     </li>
                     <li>
                         <i class="fas fa-check"></i>
-                        <span>Élaboration de business plan et prévisionnel financier</span>
+                        <span data-i18n="service.prop5">Élaboration de business plan et prévisionnel financier</span>
                     </li>
                     <li>
                         <i class="fas fa-check"></i>
-                        <span>Suivi personnalisé et reporting régulier</span>
+                        <span data-i18n="service.prop6">Suivi personnalisé et reporting régulier</span>
                     </li>
                 </ul>
             </div>
 
             <div class="service-section">
-                <h2>Informations pratiques</h2>
+                <h2 data-i18n="service.infoTitle">Informations pratiques</h2>
                 <div class="info-grid">
                     <div class="info-card">
-                        <h4>Public</h4>
-                        <p>Porteurs de projet, TPE / PME</p>
+                        <h4 data-i18n="service.public">Public</h4>
+                        <p data-i18n="service.publicValue">Porteurs de projet, TPE / PME</p>
                     </div>
                     <div class="info-card">
-                        <h4>Format</h4>
-                        <p>Sur site ou à distance</p>
+                        <h4 data-i18n="service.format">Format</h4>
+                        <p data-i18n="service.formatValue">Sur site ou à distance</p>
                     </div>
                     <div class="info-card">
-                        <h4>Premier échange</h4>
-                        <p>Diagnostic initial offert</p>
+                        <h4 data-i18n="service.firstExchange">Premier échange</h4>
+                        <p data-i18n="service.firstExchangeValue">Diagnostic initial offert</p>
                     </div>
                     <div class="info-card">
-                        <h4>Zone d'intervention</h4>
-                        <p>Maroc</p>
+                        <h4 data-i18n="service.zone">Zone d'intervention</h4>
+                        <p data-i18n="service.zoneValue">Maroc</p>
                     </div>
                 </div>
             </div>
 
             <div class="cta-section">
-                <a href="index.html#contact" class="btn btn-gold">Demander un devis</a>
-                <a href="realisations.html" class="btn btn-outline">Voir nos réalisations</a>
+                <a href="index.html#contact" class="btn btn-gold" data-i18n="service.quote">Demander un devis</a>
+                <a href="realisations.html" class="btn btn-outline" data-i18n="service.viewWorks">Voir nos réalisations</a>
             </div>
 
         </div>
@@ -746,11 +833,11 @@
     <footer class="main-footer">
         <div class="container">
             <div class="footer-nav">
-                <a href="index.html#hero">Accueil</a>
-                <a href="index.html#services">Services</a>
-                <a href="realisations.html">Réalisation</a>
-                <a href="index.html#about">À propos</a>
-                <a href="index.html#contact">Contact</a>
+                <a href="index.html#hero" data-i18n="nav.home">Accueil</a>
+                <a href="index.html#services" data-i18n="nav.services">Services</a>
+                <a href="realisations.html" data-i18n="nav.gallery">Réalisation</a>
+                <a href="index.html#about" data-i18n="nav.about">À propos</a>
+                <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
             </div>
             <div class="footer-sig">
                 <img src="logo.jpg" alt="FITAT Logo" class="footer-logo">
@@ -775,6 +862,117 @@
         function toggleMenu() {
             document.querySelector('.menu-links').classList.toggle('show');
         }
+
+        // Language Translation System
+        const translations = {
+            fr: {
+                'nav.home': 'Accueil',
+                'nav.services': 'Services',
+                'nav.gallery': 'Réalisation',
+                'nav.about': 'À propos',
+                'nav.contact': 'Contact',
+                'back.services': 'Tous les services',
+                'service.title': 'Bureau de consultation',
+                'service.subtitle': 'Un accompagnement stratégique pour structurer, développer et pérenniser votre activité.',
+                'service.quote': 'Demander un devis',
+                'service.call': 'Appeler le centre',
+                'service.presentation': 'Présentation',
+                'service.p1': 'Notre bureau de consultation accompagne les entrepreneurs, restaurateurs, traiteurs et centres de formation dans la structuration et le développement de leur activité, de l\'idée jusqu\'au pilotage quotidien.',
+                'service.p2': 'Chaque mission commence par un diagnostic complet de votre organisation afin d\'identifier les leviers de croissance et les points à améliorer, avant de construire ensemble un plan d\'action réaliste et chiffré.',
+                'service.propositionsTitle': 'Ce que nous proposons',
+                'service.prop1': 'Diagnostic et audit d\'entreprise',
+                'service.prop2': 'Étude de marché et positionnement',
+                'service.prop3': 'Accompagnement à la création d\'entreprise',
+                'service.prop4': 'Optimisation des processus internes',
+                'service.prop5': 'Élaboration de business plan et prévisionnel financier',
+                'service.prop6': 'Suivi personnalisé et reporting régulier',
+                'service.infoTitle': 'Informations pratiques',
+                'service.public': 'Public',
+                'service.publicValue': 'Porteurs de projet, TPE / PME',
+                'service.format': 'Format',
+                'service.formatValue': 'Sur site ou à distance',
+                'service.firstExchange': 'Premier échange',
+                'service.firstExchangeValue': 'Diagnostic initial offert',
+                'service.zone': 'Zone d\'intervention',
+                'service.zoneValue': 'Maroc',
+                'service.viewWorks': 'Voir nos réalisations'
+            },
+            ar: {
+                'nav.home': 'الرئيسية',
+                'nav.services': 'الخدمات',
+                'nav.gallery': 'الإنجازات',
+                'nav.about': 'من نحن',
+                'nav.contact': 'اتصل بنا',
+                'back.services': 'جميع الخدمات',
+                'service.title': 'مكتب الاستشارات',
+                'service.subtitle': 'مرافقة استراتيجية لهيكلة وتطوير واستدامة نشاطك.',
+                'service.quote': 'طلب عرض سعر',
+                'service.call': 'اتصل بالمركز',
+                'service.presentation': 'العرض',
+                'service.p1': 'يرافق مكتب الاستشارات لدينا رواد الأعمال والمطاعم والتموين ومراكز التكوين في هيكلة وتطوير نشاطهم، من الفكرة إلى الإدارة اليومية.',
+                'service.p2': 'تبدأ كل مهمة بتشخيص كامل لمنظمتك لتحديد محركات النمو ونقاط التحسين، قبل بناء خطة عمل واقعية ومفصلة معاً.',
+                'service.propositionsTitle': 'ما نقدمه',
+                'service.prop1': 'التشخيص وتدقيق الشركة',
+                'service.prop2': 'دراسة السوق والتموضع',
+                'service.prop3': 'مرافقة إنشاء الشركة',
+                'service.prop4': 'تحسين العمليات الداخلية',
+                'service.prop5': 'إعداد خطة عمل والتوقعات المالية',
+                'service.prop6': 'متابعة شخصية وتقارير منتظمة',
+                'service.infoTitle': 'معلومات عملية',
+                'service.public': 'الجمهور المستهدف',
+                'service.publicValue': 'حاملو المشاريع، الشركات الصغيرة والمتوسطة',
+                'service.format': 'الصيغة',
+                'service.formatValue': 'على الموقع أو عن بعد',
+                'service.firstExchange': 'التبادل الأول',
+                'service.firstExchangeValue': 'تشخيص أولي مجاني',
+                'service.zone': 'منطقة التدخل',
+                'service.zoneValue': 'المغرب',
+                'service.viewWorks': 'عرض إنجازاتنا'
+            }
+        };
+
+        let currentLang = 'fr';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const html = document.documentElement;
+            
+            // Update HTML lang and dir attributes
+            html.setAttribute('lang', lang);
+            html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            
+            // Update font family for Arabic
+            if (lang === 'ar') {
+                document.body.style.fontFamily = 'var(--font-arabic), var(--font-sans), sans-serif';
+            } else {
+                document.body.style.fontFamily = 'var(--font-sans), sans-serif';
+            }
+            
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.dataset.i18n;
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            
+            // Save language preference to localStorage
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'fr';
+            switchLanguage(savedLang);
+        });
     </script>
 </body>
 </html>

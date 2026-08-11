@@ -6,7 +6,7 @@
     <title>Logiciel de gestion | FITAT</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Montserrat:wght@200;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Montserrat:wght@200;400;500;600&family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -23,6 +23,7 @@
             --glass-border: rgba(13, 71, 161, 0.15);
             --font-serif: 'Cormorant Garamond', serif;
             --font-sans: 'Montserrat', sans-serif;
+            --font-arabic: 'Noto Kufi Arabic', sans-serif;
             --curve: cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -117,10 +118,91 @@
             gap: 12px;
         }
         .nav-logo{
-            height: 58px;
+            height: 45px;
             width: auto;
             object-fit: contain;
             display: block;
+            border-radius: 50%;
+        }
+
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 2rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(13, 71, 161, 0.2);
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        .lang-btn:hover {
+            background: rgba(13, 71, 161, 0.1);
+            color: var(--gold-primary);
+        }
+
+        .lang-btn.active {
+            background: var(--gold-primary);
+            color: #ffffff;
+            border-color: var(--gold-primary);
+        }
+
+        .lang-divider {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .menu-links {
+            flex-direction: row;
+        }
+
+        [dir="rtl"] .lang-switcher {
+            margin-right: 2rem;
+            margin-left: 0;
+        }
+
+        [dir="rtl"] .brand-identity {
+            flex-direction: row;
+        }
+
+        [dir="rtl"] .brand-identity span {
+            border-left: 1px solid rgba(13, 71, 161, 0.3);
+            border-right: none;
+            padding-left: 12px;
+            padding-right: 0;
+        }
+
+        [dir="rtl"] .nav-flex {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .hero-split {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        [dir="rtl"] .hero-content {
+            text-align: right;
+        }
+
+        [dir="rtl"] .feature-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        [dir="rtl"] .feature-card {
+            text-align: right;
+        }
+
+        [dir="rtl"] .back-nav {
+            flex-direction: row-reverse;
         }
 
         .brand-identity span {
@@ -639,11 +721,16 @@
                 <i class="fas fa-bars"></i>
             </div>
             <div class="menu-links">
-                <a href="index.html">Accueil</a>
-                <a href="services.html">Services</a>
-                <a href="realisations.html">Réalisation</a>
-                <a href="index.html#apropos">À propos</a>
-                <a href="index.html#contact">Contact</a>
+                <a href="index.html" data-i18n="nav.home">Accueil</a>
+                <a href="services.html" data-i18n="nav.services">Services</a>
+                <a href="realisations.html" data-i18n="nav.gallery">Réalisation</a>
+                <a href="index.html#apropos" data-i18n="nav.about">À propos</a>
+                <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="fr" onclick="switchLanguage('fr')">FR</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="ar" onclick="switchLanguage('ar')">العربية</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -652,88 +739,88 @@
         <div class="container">
             
             <div class="back-nav">
-                <a href="services.html">
+                <a href="services.html" data-i18n="back.services">
                     <i class="fas fa-arrow-left"></i>
                     Tous les services
                 </a>
             </div>
 
             <div class="service-hero" style="background-image: url('images/Logiciel%20de%20gestion.png');">
-                <div class="icon">�</div>
-                <h1>Logiciel de gestion</h1>
-                <p class="subtitle">
+                <div class="icon">💻</div>
+                <h1 data-i18n="service.title">Logiciel de gestion</h1>
+                <p class="subtitle" data-i18n="service.subtitle">
                     Une solution digitale simple et fiable pour piloter votre activité au quotidien.
                 </p>
                 <div class="service-hero-buttons">
-                    <a href="index.html#contact" class="btn btn-gold">Demander un devis</a>
+                    <a href="index.html#contact" class="btn btn-gold" data-i18n="service.quote">Demander un devis</a>
                     <a href="tel:+212600000000" class="btn btn-outline">
                         <i class="fas fa-phone" style="margin-right: 8px;"></i>
-                        Appeler le centre
+                        <span data-i18n="service.call">Appeler le centre</span>
                     </a>
                 </div>
             </div>
 
             <div class="service-section">
-                <h2>Présentation</h2>
-                <p>
+                <h2 data-i18n="service.presentation">Présentation</h2>
+                <p data-i18n="service.p1">
                     Notre logiciel de gestion a été pensé avec et pour les professionnels de la restauration et de la formation : simple à prendre en main, il centralise vos opérations quotidiennes dans un seul outil.
                 </p>
-                <p>
+                <p data-i18n="service.p2">
                     Nous assurons l'installation, le paramétrage selon votre activité, la formation de vos équipes ainsi qu'un support continu pour vous accompagner dans la durée.
                 </p>
             </div>
 
             <div class="service-section">
-                <h2>Ce que nous proposons</h2>
+                <h2 data-i18n="service.propositionsTitle">Ce que nous proposons</h2>
                 <ul class="service-list">
                     <li>
                         <i class="fas fa-check"></i>
-                        <span>Gestion des stocks, achats et fournisseurs</span>
+                        <span data-i18n="service.prop1">Gestion des stocks, achats et fournisseurs</span>
                     </li>
                     <li>
                         <i class="fas fa-check"></i>
-                        <span>Facturation et suivi de trésorerie</span>
+                        <span data-i18n="service.prop2">Facturation et suivi de trésorerie</span>
                     </li>
                     <li>
                         <i class="fas fa-check"></i>
-                        <span>Gestion des réservations et des plannings</span>
+                        <span data-i18n="service.prop3">Gestion des réservations et des plannings</span>
                     </li>
                     <li>
                         <i class="fas fa-check"></i>
-                        <span>Tableaux de bord et statistiques en temps réel</span>
+                        <span data-i18n="service.prop4">Tableaux de bord et statistiques en temps réel</span>
                     </li>
                     <li>
                         <i class="fas fa-check"></i>
-                        <span>Accès multi-utilisateurs sécurisé</span>
+                        <span data-i18n="service.prop5">Accès multi-utilisateurs sécurisé</span>
                     </li>
                 </ul>
             </div>
 
             <div class="service-section">
-                <h2>Informations pratiques</h2>
+                <h2 data-i18n="service.infoTitle">Informations pratiques</h2>
                 <div class="info-grid">
                     <div class="info-card">
-                        <h4>Déploiement</h4>
-                        <p>Cloud ou installation locale</p>
+                        <h4 data-i18n="service.deployment">Déploiement</h4>
+                        <p data-i18n="service.deploymentValue">Cloud ou installation locale</p>
                     </div>
                     <div class="info-card">
-                        <h4>Utilisateurs</h4>
-                        <p>Accès multi-postes sécurisé</p>
+                        <h4 data-i18n="service.users">Utilisateurs</h4>
+                        <p data-i18n="service.usersValue">Accès multi-postes sécurisé</p>
                     </div>
                     <div class="info-card">
-                        <h4>Accompagnement</h4>
-                        <p>Formation & assistance incluses</p>
+                        <h4 data-i18n="service.support">Accompagnement</h4>
+                        <p data-i18n="service.supportValue">Formation & assistance incluses</p>
                     </div>
                     <div class="info-card">
-                        <h4>Évolutions</h4>
-                        <p>Mises à jour régulières</p>
+                        <h4 data-i18n="service.evolutions">Évolutions</h4>
+                        <p data-i18n="service.evolutionsValue">Mises à jour régulières</p>
                     </div>
                 </div>
             </div>
 
             <div class="cta-section">
-                <a href="index.html#contact" class="btn btn-gold">Demander un devis</a>
-                <a href="realisations.html" class="btn btn-outline">Voir nos réalisations</a>
+                <a href="index.html#contact" class="btn btn-gold" data-i18n="service.quote">Demander un devis</a>
+                <a href="realisations.html" class="btn btn-outline" data-i18n="service.viewWorks">Voir nos réalisations</a>
             </div>
 
         </div>
@@ -742,11 +829,11 @@
     <footer class="main-footer">
         <div class="container">
             <div class="footer-nav">
-                <a href="index.html">Accueil</a>
-                <a href="services.html">Services</a>
-                <a href="realisations.html">Réalisation</a>
-                <a href="index.html#apropos">À propos</a>
-                <a href="index.html#contact">Contact</a>
+                <a href="index.html" data-i18n="nav.home">Accueil</a>
+                <a href="services.html" data-i18n="nav.services">Services</a>
+                <a href="realisations.html" data-i18n="nav.gallery">Réalisation</a>
+                <a href="index.html#apropos" data-i18n="nav.about">À propos</a>
+                <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
             </div>
             <div class="footer-sig">
                 <img src="logo.jpg" alt="FITAT Logo" class="footer-logo">
@@ -771,6 +858,115 @@
         function toggleMenu() {
             document.querySelector('.menu-links').classList.toggle('show');
         }
+
+        // Language Translation System
+        const translations = {
+            fr: {
+                'nav.home': 'Accueil',
+                'nav.services': 'Services',
+                'nav.gallery': 'Réalisation',
+                'nav.about': 'À propos',
+                'nav.contact': 'Contact',
+                'back.services': 'Tous les services',
+                'service.title': 'Logiciel de gestion',
+                'service.subtitle': 'Une solution digitale simple et fiable pour piloter votre activité au quotidien.',
+                'service.quote': 'Demander un devis',
+                'service.call': 'Appeler le centre',
+                'service.presentation': 'Présentation',
+                'service.p1': 'Notre logiciel de gestion a été pensé avec et pour les professionnels de la restauration et de la formation : simple à prendre en main, il centralise vos opérations quotidiennes dans un seul outil.',
+                'service.p2': 'Nous assurons l\'installation, le paramétrage selon votre activité, la formation de vos équipes ainsi qu\'un support continu pour vous accompagner dans la durée.',
+                'service.propositionsTitle': 'Ce que nous proposons',
+                'service.prop1': 'Gestion des stocks, achats et fournisseurs',
+                'service.prop2': 'Facturation et suivi de trésorerie',
+                'service.prop3': 'Gestion des réservations et des plannings',
+                'service.prop4': 'Tableaux de bord et statistiques en temps réel',
+                'service.prop5': 'Accès multi-utilisateurs sécurisé',
+                'service.infoTitle': 'Informations pratiques',
+                'service.deployment': 'Déploiement',
+                'service.deploymentValue': 'Cloud ou installation locale',
+                'service.users': 'Utilisateurs',
+                'service.usersValue': 'Accès multi-postes sécurisé',
+                'service.support': 'Accompagnement',
+                'service.supportValue': 'Formation & assistance incluses',
+                'service.evolutions': 'Évolutions',
+                'service.evolutionsValue': 'Mises à jour régulières',
+                'service.viewWorks': 'Voir nos réalisations'
+            },
+            ar: {
+                'nav.home': 'الرئيسية',
+                'nav.services': 'الخدمات',
+                'nav.gallery': 'الإنجازات',
+                'nav.about': 'من نحن',
+                'nav.contact': 'اتصل بنا',
+                'back.services': 'جميع الخدمات',
+                'service.title': 'برنامج الإدارة',
+                'service.subtitle': 'حل رقمي بسيط وموثوق لإدارة نشاطك اليومي.',
+                'service.quote': 'طلب عرض سعر',
+                'service.call': 'اتصل بالمركز',
+                'service.presentation': 'العرض',
+                'service.p1': 'تم تصميم برنامج الإدارة لدينا مع ومحترفي المطاعم والتكوين: بسيط الاستخدام، يركز عملياتك اليومية في أداة واحدة.',
+                'service.p2': 'نضمن التثبيت، والإعداد حسب نشاطك، وتدريب فرقك بالإضافة إلى دعم مستمر لمرافقتك على المدى الطويل.',
+                'service.propositionsTitle': 'ما نقدمه',
+                'service.prop1': 'إدارة المخزون والمشتريات والموردين',
+                'service.prop2': 'الفوترة ومتابعة الخزينة',
+                'service.prop3': 'إدارة الحجوزات وجداول العمل',
+                'service.prop4': 'لوحات القيادة والإحصائيات في الوقت الفعلي',
+                'service.prop5': 'وصول متعدد المستخدمين آمن',
+                'service.infoTitle': 'معلومات عملية',
+                'service.deployment': 'النشر',
+                'service.deploymentValue': 'سحابة أو تثبيت محلي',
+                'service.users': 'المستخدمون',
+                'service.usersValue': 'وصول متعدد المواقع آمن',
+                'service.support': 'المرافقة',
+                'service.supportValue': 'التدريب والمساعدة مشمولة',
+                'service.evolutions': 'التطورات',
+                'service.evolutionsValue': 'تحديثات منتظمة',
+                'service.viewWorks': 'عرض إنجازاتنا'
+            }
+        };
+
+        let currentLang = 'fr';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const html = document.documentElement;
+            
+            // Update HTML lang and dir attributes
+            html.setAttribute('lang', lang);
+            html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            
+            // Update font family for Arabic
+            if (lang === 'ar') {
+                document.body.style.fontFamily = 'var(--font-arabic), var(--font-sans), sans-serif';
+            } else {
+                document.body.style.fontFamily = 'var(--font-sans), sans-serif';
+            }
+            
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.dataset.i18n;
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            
+            // Save language preference to localStorage
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'fr';
+            switchLanguage(savedLang);
+        });
     </script>
 </body>
 </html>

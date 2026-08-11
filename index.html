@@ -6,7 +6,7 @@
     <title>Chef Saâd Fitat | Haute Gastronomie & Formations d'Élite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Montserrat:wght@200;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Montserrat:wght@200;400;500;600&family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -23,6 +23,7 @@
             --glass-border: rgba(13, 71, 161, 0.15);
             --font-serif: 'Cormorant Garamond', serif;
             --font-sans: 'Montserrat', sans-serif;
+            --font-arabic: 'Noto Kufi Arabic', sans-serif;
             --curve: cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -149,16 +150,123 @@
 
         .menu-links a {
             font-size: 0.75rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 2.5px;
-            font-weight: 400;
-            color: var(--text-muted);
+            color: var(--text-light);
             transition: color 0.3s ease;
             position: relative;
         }
 
-        .menu-links a:hover, .menu-links a.active {
+        .menu-links a:hover,
+        .menu-links a.active {
             color: var(--gold-primary);
+        }
+
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 2rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(13, 71, 161, 0.2);
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        .lang-btn:hover {
+            background: rgba(13, 71, 161, 0.1);
+            color: var(--gold-primary);
+        }
+
+        .lang-btn.active {
+            background: var(--gold-primary);
+            color: #ffffff;
+            border-color: var(--gold-primary);
+        }
+
+        .lang-divider {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .menu-links {
+            flex-direction: row;
+        }
+
+        [dir="rtl"] .lang-switcher {
+            margin-right: 2rem;
+            margin-left: 0;
+        }
+
+        [dir="rtl"] .brand-identity {
+            flex-direction: row;
+        }
+
+        [dir="rtl"] .brand-identity span {
+            border-left: 1px solid rgba(13, 71, 161, 0.3);
+            border-right: none;
+            padding-left: 12px;
+            padding-right: 0;
+        }
+
+        [dir="rtl"] .nav-flex {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .method-split {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        [dir="rtl"] .method-content {
+            text-align: right;
+        }
+
+        [dir="rtl"] .method-list li {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .method-image {
+            order: -1;
+        }
+
+        [dir="rtl"] .contact-split {
+            grid-template-columns: 1.2fr 1fr;
+        }
+
+        [dir="rtl"] .pane-row {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .dock-flex {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .dock-item {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .gallery-arrow.left {
+            left: auto;
+            right: 40px;
+        }
+
+        [dir="rtl"] .gallery-arrow.right {
+            right: auto;
+            left: 40px;
+        }
+
+        [dir="rtl"] .gallery-close {
+            right: auto;
+            left: 40px;
         }
 
         .menu-links a.btn-gold {
@@ -1783,11 +1891,16 @@
     <i class="fas fa-bars"></i>
 </div>
             <div class="menu-links">
-                <a href="#hero" class="active">Accueil</a>
-                <a href="#services">Services</a>
-                <a href="#gallery">Réalisation</a>
-                <a href="#about">À propos</a>
-                <a href="#contact" class="btn btn-gold">Contact</a>
+                <a href="#hero" class="active" data-i18n="nav.home">Accueil</a>
+                <a href="#services" data-i18n="nav.services">Services</a>
+                <a href="#gallery" data-i18n="nav.gallery">Réalisation</a>
+                <a href="#about" data-i18n="nav.about">À propos</a>
+                <a href="#contact" class="btn btn-gold" data-i18n="nav.contact">Contact</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="fr" onclick="switchLanguage('fr')">FR</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="ar" onclick="switchLanguage('ar')">العربية</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -1797,38 +1910,38 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-badge">
-                <span>CENTRE DE FORMATION AGREE</span>
+                <span data-i18n="hero.badge">CENTRE DE FORMATION AGREE</span>
             </div>
-            <h1 class="hero-title">FORMEZ-VOUS AUX MÉTIERS QUI<br>RECRUTENT</h1>
-            <p class="hero-description">
+            <h1 class="hero-title" data-i18n="hero.title">FORMEZ-VOUS AUX MÉTIERS QUI<br>RECRUTENT</h1>
+            <p class="hero-description" data-i18n="hero.description">
                 FITAT Formation accompagne les jeunes et les professionnels avec des parcours pratiques, encadrés par des formateurs experts et orientés vers l'emploi.
             </p>
             
             <div class="training-buttons">
                 <div class="training-row">
-                    <a href="formation.html?f=coiffure" class="btn btn-primary">Coiffure & Esthétique</a>
-                    <a href="formation.html?f=couture" class="btn btn-primary">Couture & Stylisme</a>
-                    <a href="formation.html?f=patisserie" class="btn btn-secondary">Pâtisserie & Cuisine</a>
-                    <a href="formation.html?f=informatique" class="btn btn-secondary">Informatique & Bureautique</a>
+                    <a href="formation.html?f=coiffure" class="btn btn-primary" data-i18n="hero.btn.coiffure">Coiffure & Esthétique</a>
+                    <a href="formation.html?f=couture" class="btn btn-primary" data-i18n="hero.btn.couture">Couture & Stylisme</a>
+                    <a href="formation.html?f=patisserie" class="btn btn-secondary" data-i18n="hero.btn.patisserie">Pâtisserie & Cuisine</a>
+                    <a href="formation.html?f=informatique" class="btn btn-secondary" data-i18n="hero.btn.informatique">Informatique & Bureautique</a>
                 </div>
                 <div class="training-row">
-                    <a href="formation.html?f=electricite" class="btn btn-secondary">Électricité & Maintenance</a>
-                    <a href="#contact" class="btn btn-cta">S'inscrire maintenant →</a>
+                    <a href="formation.html?f=electricite" class="btn btn-secondary" data-i18n="hero.btn.electricite">Électricité & Maintenance</a>
+                    <a href="#contact" class="btn btn-cta" data-i18n="hero.btn.register">S'inscrire maintenant →</a>
                 </div>
             </div>
 
             <div class="hero-stats">
                 <div class="hero-stat-item">
-                    <span class="stat-number">+1200</span>
-                    <span class="stat-label">STAGIAIRES FORMÉS</span>
+                    <span class="stat-number" data-i18n="hero.stat1">+1200</span>
+                    <span class="stat-label" data-i18n="hero.stat1label">STAGIAIRES FORMÉS</span>
                 </div>
                 <div class="hero-stat-item">
-                    <span class="stat-number">+15</span>
-                    <span class="stat-label">FILIÈRES</span>
+                    <span class="stat-number" data-i18n="hero.stat2">+15</span>
+                    <span class="stat-label" data-i18n="hero.stat2label">FILIÈRES</span>
                 </div>
                 <div class="hero-stat-item">
-                    <span class="stat-number">92%</span>
-                    <span class="stat-label">TAUX DE RÉUSSITE</span>
+                    <span class="stat-number" data-i18n="hero.stat3">92%</span>
+                    <span class="stat-label" data-i18n="hero.stat3label">TAUX DE RÉUSSITE</span>
                 </div>
             </div>
         </div>
@@ -1844,24 +1957,24 @@
                 </div>
             </div>
             <div class="about-info">
-                <span class="tagline">Philosophie Culinaire</span>
-                <h3>L'harmonie parfaite du goût & du geste</h3>
-                <p>Ambassadeur d'une cuisine à la fois moderne et profondément enracinée, le <strong>Chef Saâd Fitat</strong> réinvente l'art culinaire à travers une vision contemporaine exclusive. Chaque assiette est pensée comme une œuvre éphémère, mariant la générosité légendaire de la gastronomie marocaine aux exigences de la haute cuisine internationale.</p>
-                <p>En tant que formateur et consultant d'élite, il transmet à ses paires et étudiants la rigueur du geste technique millimétré, le respect absolu du produit brut et l'audace créative.</p>
+                <span class="tagline" data-i18n="about.tagline">Philosophie Culinaire</span>
+                <h3 data-i18n="about.title">L'harmonie parfaite du goût & du geste</h3>
+                <p data-i18n="about.p1">Ambassadeur d'une cuisine à la fois moderne et profondément enracinée, le <strong>Chef Saâd Fitat</strong> réinvente l'art culinaire à travers une vision contemporaine exclusive. Chaque assiette est pensée comme une œuvre éphémère, mariant la générosité légendaire de la gastronomie marocaine aux exigences de la haute cuisine internationale.</p>
+                <p data-i18n="about.p2">En tant que formateur et consultant d'élite, il transmet à ses paires et étudiants la rigueur du geste technique millimétré, le respect absolu du produit brut et l'audace créative.</p>
                 
                 <div class="stamp-row">
                     <div class="stamp-box">
                         <i class="fas fa-award"></i>
                         <div>
-                            <h5>Haute Gastronomie</h5>
-                            <p>Standard de Palace</p>
+                            <h5 data-i18n="about.stamp1">Haute Gastronomie</h5>
+                            <p data-i18n="about.stamp1desc">Standard de Palace</p>
                         </div>
                     </div>
                     <div class="stamp-box">
                         <i class="fas fa-graduation-cap"></i>
                         <div>
-                            <h5>Transmission</h5>
-                            <p>+500 Élèves Formés</p>
+                            <h5 data-i18n="about.stamp2">Transmission</h5>
+                            <p data-i18n="about.stamp2desc">+500 Élèves Formés</p>
                         </div>
                     </div>
                 </div>
@@ -1876,25 +1989,25 @@
             <div class="stat-card">
                 <h3 class="counter" data-target="500">0</h3>
                 <span>+</span>
-                <p>Étudiants Formés</p>
+                <p data-i18n="stats.stat1label">Étudiants Formés</p>
             </div>
 
             <div class="stat-card">
                 <h3 class="counter" data-target="12">0</h3>
                 <span>+</span>
-                <p>Ans d'Expérience</p>
+                <p data-i18n="stats.stat2label">Ans d'Expérience</p>
             </div>
 
             <div class="stat-card">
                 <h3 class="counter" data-target="150">0</h3>
                 <span>+</span>
-                <p>Événements Culinaires</p>
+                <p data-i18n="stats.stat3label">Événements Culinaires</p>
             </div>
 
             <div class="stat-card">
                 <h3 class="counter" data-target="50">0</h3>
                 <span>+</span>
-                <p>Restaurants Accompagnés</p>
+                <p data-i18n="stats.stat4label">Restaurants Accompagnés</p>
             </div>
 
         </div>
@@ -1906,8 +2019,8 @@
     <div class="container">
 
         <div class="section-header">
-            <span class="tagline">Atmosphère</span>
-            <h2>Créations & Réalisations</h2>
+            <span class="tagline" data-i18n="gallery.tagline">Atmosphère</span>
+            <h2 data-i18n="gallery.title">Créations & Réalisations</h2>
 
             <div class="soundwave-visual">
                 <span></span><span></span><span></span><span></span><span></span>
@@ -1927,8 +2040,8 @@
                     </video>
 
                     <div class="item-glass-overlay">
-                        <span class="cat-tag">Gastronomie marocaine</span>
-                        <h4>Le Terroir Moderne</h4>
+                        <span class="cat-tag" data-i18n="gallery.tag1">Gastronomie marocaine</span>
+                        <h4 data-i18n="gallery.title1">Le Terroir Moderne</h4>
                     </div>
 
                 </div>
@@ -1943,8 +2056,8 @@
         </video>
 
         <div class="item-glass-overlay">
-            <span class="cat-tag">Cuisine internationale</span>
-            <h4>Fusions Contemporaines</h4>
+            <span class="cat-tag" data-i18n="gallery.tag2">Cuisine internationale</span>
+            <h4 data-i18n="gallery.title2">Fusions Contemporaines</h4>
         </div>
 
     </div>
@@ -1959,8 +2072,8 @@
                     </video>
 
                     <div class="item-glass-overlay">
-                        <span class="cat-tag">Dressage professionnel</span>
-                        <h4>Géométrie du Goût</h4>
+                        <span class="cat-tag" data-i18n="gallery.tag3">Dressage professionnel</span>
+                        <h4 data-i18n="gallery.title3">Géométrie du Goût</h4>
                     </div>
 
                 </div>
@@ -1975,8 +2088,8 @@
                     </video>
 
                     <div class="item-glass-overlay">
-                        <span class="cat-tag">Formations culinaires</span>
-                        <h4>Transmission des Techniques Masters</h4>
+                        <span class="cat-tag" data-i18n="gallery.tag4">Formations culinaires</span>
+                        <h4 data-i18n="gallery.title4">Transmission des Techniques Masters</h4>
                     </div>
 
                 </div>
@@ -1991,8 +2104,8 @@
         </video>
 
         <div class="item-glass-overlay">
-            <span class="cat-tag">Événements & Prestations</span>
-            <h4>Dîners Privés d'Exception</h4>
+            <span class="cat-tag" data-i18n="gallery.tag5">Événements & Prestations</span>
+            <h4 data-i18n="gallery.title5">Dîners Privés d'Exception</h4>
         </div>
 
     </div>
@@ -2006,9 +2119,9 @@
     <div class="container">
 
         <div class="section-header">
-            <span class="tagline">Expertise</span>
-            <h2>NOS SERVICES</h2>
-            <p style="color: var(--text-muted); font-size: 1rem; margin-top: 1rem; max-width: 800px; margin-left: auto; margin-right: auto;">Un groupe, cinq pôles d'expertise au service des professionnels de la formation et de la restauration.</p>
+            <span class="tagline" data-i18n="services.tagline">Expertise</span>
+            <h2 data-i18n="services.title">NOS SERVICES</h2>
+            <p style="color: var(--text-muted); font-size: 1rem; margin-top: 1rem; max-width: 800px; margin-left: auto; margin-right: auto;" data-i18n="services.desc">Un groupe, cinq pôles d'expertise au service des professionnels de la formation et de la restauration.</p>
             <div class="title-divider"></div>
         </div>
 
@@ -2020,14 +2133,14 @@
 
                 <div class="service-content">
 
-                    <h3>Bureau de consultation</h3>
+                    <h3 data-i18n="services.service1">Bureau de consultation</h3>
 
-                    <p>
+                    <p data-i18n="services.service1desc">
                         Diagnostic, stratégie et accompagnement pour structurer et développer votre activité.
                     </p>
 
                     <a href="service.html?s=consultation"
-                       class="btn btn-outline">
+                       class="btn btn-outline" data-i18n="services.btn">
                        Voir les détails →
                     </a>
 
@@ -2041,14 +2154,14 @@
 
                 <div class="service-content">
 
-                    <h3>Centre de formation</h3>
+                    <h3 data-i18n="services.service2">Centre de formation</h3>
 
-                    <p>
+                    <p data-i18n="services.service2desc">
                         6 filières professionnelles certifiantes, 70% de pratique, formateurs experts du terrain.
                     </p>
 
                     <a href="service.html?s=formation"
-                       class="btn btn-outline">
+                       class="btn btn-outline" data-i18n="services.btn">
                        Voir les détails →
                     </a>
 
@@ -2062,14 +2175,14 @@
 
                 <div class="service-content">
 
-                    <h3>Traiteur</h3>
+                    <h3 data-i18n="services.service3">Traiteur</h3>
 
-                    <p>
+                    <p data-i18n="services.service3desc">
                         Prestations traiteur sur mesure pour vos mariages, séminaires et événements d'entreprise.
                     </p>
 
                     <a href="service.html?s=traiteur"
-                       class="btn btn-outline">
+                       class="btn btn-outline" data-i18n="services.btn">
                        Voir les détails →
                     </a>
 
@@ -2083,14 +2196,14 @@
 
                 <div class="service-content">
 
-                    <h3>Logiciel de gestion</h3>
+                    <h3 data-i18n="services.service4">Logiciel de gestion</h3>
 
-                    <p>
+                    <p data-i18n="services.service4desc">
                         Un outil simple et fiable pour piloter stocks, facturation et réservations au quotidien.
                     </p>
 
                     <a href="service.html?s=logiciel"
-                       class="btn btn-outline">
+                       class="btn btn-outline" data-i18n="services.btn">
                        Voir les détails →
                     </a>
 
@@ -2104,14 +2217,14 @@
 
                 <div class="service-content">
 
-                    <h3>Création des menus</h3>
+                    <h3 data-i18n="services.service5">Création des menus</h3>
 
-                    <p>
+                    <p data-i18n="services.service5desc">
                         Conception de cartes et menus sur mesure, alignés avec votre identité et vos prix.
                     </p>
 
                     <a href="service.html?s=menus"
-                       class="btn btn-outline">
+                       class="btn btn-outline" data-i18n="services.btn">
                        Voir les détails →
                     </a>
 
@@ -2124,9 +2237,9 @@
     <section class="formations-section">
         <div class="container">
             <div class="section-header">
-                <span class="tagline">Excellence</span>
-                <h2>NOS FORMATIONS</h2>
-                <p style="color: var(--text-muted); font-size: 1rem; margin-top: 1rem; max-width: 800px; margin-left: auto; margin-right: auto;">Des formations professionnelles pratiques pour développer vos compétences et construire votre avenir.</p>
+                <span class="tagline" data-i18n="formations.tagline">Excellence</span>
+                <h2 data-i18n="formations.title">NOS FORMATIONS</h2>
+                <p style="color: var(--text-muted); font-size: 1rem; margin-top: 1rem; max-width: 800px; margin-left: auto; margin-right: auto;" data-i18n="formations.desc">Des formations professionnelles pratiques pour développer vos compétences et construire votre avenir.</p>
                 <div class="title-divider"></div>
             </div>
 
@@ -2135,12 +2248,12 @@
                 <div class="formation-card">
                     <img src="images/Coiffure%20%26%20Esth%C3%A9tique.png">
                     <div class="formation-content">
-                        <h3>Coiffure & Esthétique</h3>
-                        <p>
+                        <h3 data-i18n="formations.formation1">Coiffure & Esthétique</h3>
+                        <p data-i18n="formations.formation1desc">
                             Maîtrisez les techniques de coupe, de coloration et de soins esthétiques pour travailler en salon ou ouvrir le vôtre.
                         </p>
                         <a href="formation.html?f=coiffure"
-                           class="btn btn-outline">
+                           class="btn btn-outline" data-i18n="services.btn">
                            Voir les détails →
                         </a>
                     </div>
@@ -2149,12 +2262,12 @@
                 <div class="formation-card">
                     <img src="images/Couture%20%26%20Stylisme.png">
                     <div class="formation-content">
-                        <h3>Couture & Stylisme</h3>
-                        <p>
+                        <h3 data-i18n="formations.formation2">Couture & Stylisme</h3>
+                        <p data-i18n="formations.formation2desc">
                             De la prise de mesures à la collection finie : apprenez le patronage, le montage et la création de modèles.
                         </p>
                         <a href="formation.html?f=couture"
-                           class="btn btn-outline">
+                           class="btn btn-outline" data-i18n="services.btn">
                            Voir les détails →
                         </a>
                     </div>
@@ -2163,12 +2276,12 @@
                 <div class="formation-card">
                     <img src="images/P%C3%A2tisserie%20%26%20Cuisine.png">
                     <div class="formation-content">
-                        <h3>Pâtisserie & Cuisine</h3>
-                        <p>
+                        <h3 data-i18n="formations.formation3">Pâtisserie & Cuisine</h3>
+                        <p data-i18n="formations.formation3desc">
                             Bases professionnelles de la pâtisserie, de la viennoiserie et de la cuisine marocaine et internationale.
                         </p>
                         <a href="formation.html?f=patisserie"
-                           class="btn btn-outline">
+                           class="btn btn-outline" data-i18n="services.btn">
                            Voir les détails →
                         </a>
                     </div>
@@ -2177,12 +2290,12 @@
                 <div class="formation-card">
                     <img src="images/Informatique%20%26%20Bureautiqu.png">
                     <div class="formation-content">
-                        <h3>Informatique & Bureautique</h3>
-                        <p>
+                        <h3 data-i18n="formations.formation4">Informatique & Bureautique</h3>
+                        <p data-i18n="formations.formation4desc">
                             Devenez autonome sur l'ordinateur : bureautique, infographie, web et réseaux sociaux professionnels.
                         </p>
                         <a href="formation.html?f=informatique"
-                           class="btn btn-outline">
+                           class="btn btn-outline" data-i18n="services.btn">
                            Voir les détails →
                         </a>
                     </div>
@@ -2191,12 +2304,12 @@
                 <div class="formation-card">
                     <img src="images/%C3%89lectricit%C3%A9%20%26%20Maintenanc.png">
                     <div class="formation-content">
-                        <h3>Électricité & Maintenance</h3>
-                        <p>
+                        <h3 data-i18n="formations.formation5">Électricité & Maintenance</h3>
+                        <p data-i18n="formations.formation5desc">
                             Formation 100% pratique en atelier : installation, dépannage, froid et climatisation.
                         </p>
                         <a href="formation.html?f=electricite"
-                           class="btn btn-outline">
+                           class="btn btn-outline" data-i18n="services.btn">
                            Voir les détails →
                         </a>
                     </div>
@@ -2209,31 +2322,31 @@
     <section class="method-section">
         <div class="container method-split">
             <div class="method-content">
-                <span class="tagline">Approche</span>
-                <h2>UN CENTRE, UNE MÉTHODE</h2>
-                <p>Chez FITAT Formation, 70% du temps est consacré à la pratique. Nos ateliers équipés, nos formateurs professionnels et notre suivi personnalisé permettent à chaque stagiaire de sortir avec un vrai savoir-faire.</p>
+                <span class="tagline" data-i18n="method.tagline">Approche</span>
+                <h2 data-i18n="method.title">UN CENTRE, UNE MÉTHODE</h2>
+                <p data-i18n="method.desc">Chez FITAT Formation, 70% du temps est consacré à la pratique. Nos ateliers équipés, nos formateurs professionnels et notre suivi personnalisé permettent à chaque stagiaire de sortir avec un vrai savoir-faire.</p>
                 
                 <ul class="method-list">
-                    <li><i class="fas fa-check"></i> Ateliers équipés et groupes réduits</li>
-                    <li><i class="fas fa-check"></i> Formateurs professionnels du terrain</li>
-                    <li><i class="fas fa-check"></i> Stages en entreprise et aide à l'insertion</li>
-                    <li><i class="fas fa-check"></i> Attestations et diplômes reconnus</li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="method.point1">Ateliers équipés et groupes réduits</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="method.point2">Formateurs professionnels du terrain</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="method.point3">Stages en entreprise et aide à l'insertion</span></li>
+                    <li><i class="fas fa-check"></i> <span data-i18n="method.point4">Attestations et diplômes reconnus</span></li>
                 </ul>
             </div>
             
             <div class="method-image">
-                <img src="images/logo1.png" alt="FITAT Logo">
+                <img src="logo.jpg" alt="FITAT Logo">
             </div>
         </div>
     </section>
 
     <section class="social-dock">
         <div class="container">
-            <h4>Rejoignez l'univers digital du Chef</h4>
+            <h4 data-i18n="social.title">Rejoignez l'univers digital du Chef</h4>
             <div class="dock-flex">
-                <a href="https://www.instagram.com/saadfitat?igsh=MTdncGRwbnR4eWZtOQ==" class="dock-item"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="#" class="dock-item"><i class="fab fa-tiktok"></i> TikTok</a>
-                <a href="#" class="dock-item"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.instagram.com/saadfitat?igsh=MTdncGRwbnR4eWZtOQ==" class="dock-item"><i class="fab fa-instagram"></i> <span data-i18n="social.instagram">Instagram</span></a>
+                <a href="#" class="dock-item"><i class="fab fa-tiktok"></i> <span data-i18n="social.tiktok">TikTok</span></a>
+                <a href="#" class="dock-item"><i class="fab fa-facebook-f"></i> <span data-i18n="social.facebook">Facebook</span></a>
             </div>
         </div>
     </section>
@@ -2241,22 +2354,22 @@
     <section id="contact" class="contact">
         <div class="container contact-split">
             <div class="contact-details">
-                <span class="tagline">Réservation</span>
-                <h3>Donnez vie à vos projets culinaires</h3>
-                <p>Pour toute demande de masterclass privée, consulting pour restaurants ou inscription aux formations professionnelles d'élite.</p>
+                <span class="tagline" data-i18n="contact.tagline">Réservation</span>
+                <h3 data-i18n="contact.title">Donnez vie à vos projets culinaires</h3>
+                <p data-i18n="contact.desc">Pour toute demande de masterclass privée, consulting pour restaurants ou inscription aux formations professionnelles d'élite.</p>
                 
                 <div class="card-info-pane">
                     <div class="pane-row">
                         <div class="icon-wrapper"><i class="fas fa-phone-alt"></i></div>
                         <div>
-                            <h6>Téléphone direct</h6>
+                            <h6 data-i18n="contact.phone">Téléphone direct</h6>
                             <p>+212 6 20 00 72 04</p>
                         </div>
                     </div>
                     <div class="pane-row">
                         <div class="icon-wrapper"><i class="fas fa-envelope"></i></div>
                         <div>
-                            <h6>Email conciergerie</h6>
+                            <h6 data-i18n="contact.email">Email conciergerie</h6>
                             <p>contact@chefsaadfitat.com</p>
                         </div>
                     </div>
@@ -2264,7 +2377,7 @@
 
                 <div class="map-frame-box">
                     <i class="fas fa-map-marked-alt"></i>
-                    <span>Studio Culinaire Ateliers — Casablanca, Maroc</span>
+                    <span data-i18n="contact.location">Studio Culinaire Ateliers — Casablanca, Maroc</span>
                 </div>
             </div>
 
@@ -2272,25 +2385,25 @@
                 <form id="luxuryContactForm" action="#" onsubmit="handleFormSubmit(event)">
                     <div class="input-group">
                         <input type="text" id="fullname" required placeholder=" ">
-                        <label for="fullname">Votre Nom Complet</label>
+                        <label for="fullname" data-i18n="contact.name">Votre Nom Complet</label>
                     </div>
                     <div class="input-group">
                         <input type="email" id="email" required placeholder=" ">
-                        <label for="email">Adresse Electronique</label>
+                        <label for="email" data-i18n="contact.emailfield">Adresse Electronique</label>
                     </div>
                     <div class="input-group">
                         <select id="curriculum">
-                            <option value="professionnel">Cursus Professionnel (3 Mois)</option>
-                            <option value="initiation">Cursus Initiation (1 Mois)</option>
-                            <option value="master">Cursus Master Chef (6 Mois)</option>
-                            <option value="consulting">Consulting de Carte / Événementiel</option>
+                            <option value="professionnel" data-i18n="contact.option1">Cursus Professionnel (3 Mois)</option>
+                            <option value="initiation" data-i18n="contact.option2">Cursus Initiation (1 Mois)</option>
+                            <option value="master" data-i18n="contact.option3">Cursus Master Chef (6 Mois)</option>
+                            <option value="consulting" data-i18n="contact.option4">Consulting de Carte / Événementiel</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <textarea id="message" rows="4" required placeholder=" "></textarea>
-                        <label for="message">Parlez-moi de votre projet culinaire...</label>
+                        <label for="message" data-i18n="contact.message">Parlez-moi de votre projet culinaire...</label>
                     </div>
-                    <button type="submit" class="btn btn-gold full-width" style="width: 100%;">Envoyer la demande d'étude</button>
+                    <button type="submit" class="btn btn-gold full-width" style="width: 100%;" data-i18n="contact.submit">Envoyer la demande d'étude</button>
                 </form>
             </div>
         </div>
@@ -2301,7 +2414,7 @@
     <img src="logo.jpg" alt="FITAT Logo" class="footer-logo">
 </div>
             <div class="footer-line"></div>
-            <p class="footer-copy">© 2024 FITAT Formation. Tous droits réservés.</p>
+            <p class="footer-copy" data-i18n="footer.copy">© 2024 FITAT Formation. Tous droits réservés.</p>
         </div>
     </footer>
 
@@ -2319,12 +2432,269 @@
         // Form submission success event handler
         function handleFormSubmit(event) {
             event.preventDefault();
-            alert("Votre demande d'inscription a bien été transmise à l'équipe administrative du Chef Saâd Fitat. Un consultant reviendra vers vous sous 24 heures.");
+            const message = currentLang === 'ar' 
+                ? 'تم إرسال طلب تسجيلك بنجاح إلى الفريق الإداري للشيف سعد فيات. سيتصل بك مستشار في غضون 24 ساعة.'
+                : "Votre demande d'inscription a bien été transmise à l'équipe administrative du Chef Saâd Fitat. Un consultant reviendra vers vous sous 24 heures.";
+            alert(message);
             document.getElementById('luxuryContactForm').reset();
         }
 function toggleMenu() {
     document.querySelector('.menu-links').classList.toggle('show');
 }
+
+// Language Translation System
+const translations = {
+    fr: {
+        'nav.home': 'Accueil',
+        'nav.services': 'Services',
+        'nav.gallery': 'Réalisation',
+        'nav.about': 'À propos',
+        'nav.contact': 'Contact',
+        'hero.badge': 'CENTRE DE FORMATION AGREE',
+        'hero.title': 'FORMEZ-VOUS AUX MÉTIERS QUI<br>RECRUTENT',
+        'hero.description': 'FITAT Formation accompagne les jeunes et les professionnels avec des parcours pratiques, encadrés par des formateurs experts et orientés vers l\'emploi.',
+        'hero.btn.coiffure': 'Coiffure & Esthétique',
+        'hero.btn.couture': 'Couture & Stylisme',
+        'hero.btn.patisserie': 'Pâtisserie & Cuisine',
+        'hero.btn.informatique': 'Informatique & Bureautique',
+        'hero.btn.electricite': 'Électricité & Maintenance',
+        'hero.btn.register': 'S\'inscrire maintenant →',
+        'hero.stat1': '+1200',
+        'hero.stat1label': 'STAGIAIRES FORMÉS',
+        'hero.stat2': '+15',
+        'hero.stat2label': 'FILIÈRES',
+        'hero.stat3': '92%',
+        'hero.stat3label': 'TAUX DE RÉUSSITE',
+        'about.tagline': 'Philosophie Culinaire',
+        'about.title': 'L\'harmonie parfaite du goût & du geste',
+        'about.p1': 'Ambassadeur d\'une cuisine à la fois moderne et profondément enracinée, le <strong>Chef Saâd Fitat</strong> réinvente l\'art culinaire à travers une vision contemporaine exclusive. Chaque assiette est pensée comme une œuvre éphémère, mariant la générosité légendaire de la gastronomie marocaine aux exigences de la haute cuisine internationale.',
+        'about.p2': 'En tant que formateur et consultant d\'élite, il transmet à ses paires et étudiants la rigueur du geste technique millimétré, le respect absolu du produit brut et l\'audace créative.',
+        'about.stamp1': 'Haute Gastronomie',
+        'about.stamp1desc': 'Standard de Palace',
+        'about.stamp2': 'Transmission',
+        'about.stamp2desc': '+500 Élèves Formés',
+        'stats.stat1label': 'Étudiants Formés',
+        'stats.stat2label': 'Ans d\'Expérience',
+        'stats.stat3label': 'Événements Culinaires',
+        'stats.stat4label': 'Restaurants Accompagnés',
+        'gallery.tagline': 'Atmosphère',
+        'gallery.title': 'Créations & Réalisations',
+        'gallery.tag1': 'Gastronomie marocaine',
+        'gallery.title1': 'Le Terroir Moderne',
+        'gallery.tag2': 'Cuisine internationale',
+        'gallery.title2': 'Fusions Contemporaines',
+        'gallery.tag3': 'Dressage professionnel',
+        'gallery.title3': 'Géométrie du Goût',
+        'gallery.tag4': 'Formations culinaires',
+        'gallery.title4': 'Transmission des Techniques Masters',
+        'gallery.tag5': 'Événements & Prestations',
+        'gallery.title5': 'Dîners Privés d\'Exception',
+        'services.tagline': 'Expertise',
+        'services.title': 'NOS SERVICES',
+        'services.desc': 'Un groupe, cinq pôles d\'expertise au service des professionnels de la formation et de la restauration.',
+        'services.service1': 'Bureau de consultation',
+        'services.service1desc': 'Diagnostic, stratégie et accompagnement pour structurer et développer votre activité.',
+        'services.service2': 'Centre de formation',
+        'services.service2desc': '6 filières professionnelles certifiantes, 70% de pratique, formateurs experts du terrain.',
+        'services.service3': 'Traiteur',
+        'services.service3desc': 'Prestations traiteur sur mesure pour vos mariages, séminaires et événements d\'entreprise.',
+        'services.service4': 'Logiciel de gestion',
+        'services.service4desc': 'Un outil simple et fiable pour piloter stocks, facturation et réservations au quotidien.',
+        'services.service5': 'Création des menus',
+        'services.service5desc': 'Conception de cartes et menus sur mesure, alignés avec votre identité et vos prix.',
+        'services.btn': 'Voir les détails →',
+        'formations.tagline': 'Excellence',
+        'formations.title': 'NOS FORMATIONS',
+        'formations.desc': 'Des formations professionnelles pratiques pour développer vos compétences et construire votre avenir.',
+        'formations.formation1': 'Coiffure & Esthétique',
+        'formations.formation1desc': 'Maîtrisez les techniques de coupe, de coloration et de soins esthétiques pour travailler en salon ou ouvrir le vôtre.',
+        'formations.formation2': 'Couture & Stylisme',
+        'formations.formation2desc': 'De la prise de mesures à la collection finie : apprenez le patronage, le montage et la création de modèles.',
+        'formations.formation3': 'Pâtisserie & Cuisine',
+        'formations.formation3desc': 'Bases professionnelles de la pâtisserie, de la viennoiserie et de la cuisine marocaine et internationale.',
+        'formations.formation4': 'Informatique & Bureautique',
+        'formations.formation4desc': 'Devenez autonome sur l\'ordinateur : bureautique, infographie, web et réseaux sociaux professionnels.',
+        'formations.formation5': 'Électricité & Maintenance',
+        'formations.formation5desc': 'Formation 100% pratique en atelier : installation, dépannage, froid et climatisation.',
+        'method.tagline': 'Approche',
+        'method.title': 'UN CENTRE, UNE MÉTHODE',
+        'method.desc': 'Chez FITAT Formation, 70% du temps est consacré à la pratique. Nos ateliers équipés, nos formateurs professionnels et notre suivi personnalisé permettent à chaque stagiaire de sortir avec un vrai savoir-faire.',
+        'method.point1': 'Ateliers équipés et groupes réduits',
+        'method.point2': 'Formateurs professionnels du terrain',
+        'method.point3': 'Stages en entreprise et aide à l\'insertion',
+        'method.point4': 'Attestations et diplômes reconnus',
+        'social.title': 'Rejoignez l\'univers digital du Chef',
+        'social.instagram': 'Instagram',
+        'social.tiktok': 'TikTok',
+        'social.facebook': 'Facebook',
+        'contact.tagline': 'Réservation',
+        'contact.title': 'Donnez vie à vos projets culinaires',
+        'contact.desc': 'Pour toute demande de masterclass privée, consulting pour restaurants ou inscription aux formations professionnelles d\'élite.',
+        'contact.phone': 'Téléphone direct',
+        'contact.email': 'Email conciergerie',
+        'contact.location': 'Studio Culinaire Ateliers — Casablanca, Maroc',
+        'contact.name': 'Votre Nom Complet',
+        'contact.emailfield': 'Adresse Electronique',
+        'contact.message': 'Parlez-moi de votre projet culinaire...',
+        'contact.submit': 'Envoyer la demande d\'étude',
+        'contact.option1': 'Cursus Professionnel (3 Mois)',
+        'contact.option2': 'Cursus Initiation (1 Mois)',
+        'contact.option3': 'Cursus Master Chef (6 Mois)',
+        'contact.option4': 'Consulting de Carte / Événementiel',
+        'footer.copy': '© 2024 FITAT Formation. Tous droits réservés.'
+    },
+    ar: {
+        'nav.home': 'الرئيسية',
+        'nav.services': 'الخدمات',
+        'nav.gallery': 'الإنجازات',
+        'nav.about': 'من نحن',
+        'nav.contact': 'اتصل بنا',
+        'hero.badge': 'مركز تكوين معتمد',
+        'hero.title': 'تدرب على المهن التي توظف',
+        'hero.description': 'يرافق مركز فيات للتكوين الشباب والمحترفين بمسارات عملية، تحت إشراف مدربين خبراء وموجهة نحو التوظيف.',
+        'hero.btn.coiffure': 'قص الشعر والتجميل',
+        'hero.btn.couture': 'الخياطة والتصميم',
+        'hero.btn.patisserie': 'الحلويات والطبخ',
+        'hero.btn.informatique': 'المعلوميات والأعمال المكتبية',
+        'hero.btn.electricite': 'الكهرباء والصيانة',
+        'hero.btn.register': 'سجل الآن ←',
+        'hero.stat1': '+1200',
+        'hero.stat1label': 'متدرب مدرب',
+        'hero.stat2': '+15',
+        'hero.stat2label': 'تخصصات',
+        'hero.stat3': '92%',
+        'hero.stat3label': 'معدل النجاح',
+        'about.tagline': 'الفلسفة الطهوية',
+        'about.title': 'التناغم المثالي بين الذوق والإيماءة',
+        'about.p1': 'سفير للمطبخ الحديث والمتجذر بعمق، يعيد <strong>الشيف سعد فيات</strong> اختراع الفن الطهوي من خلال رؤية معاصرة حصرية. كل طبق مصمم كعمل فني مؤقت، يكرم كرم المطبخ المغربي الأسطوري مع تلبية متطلبات المطبخ العالمي الراقي.',
+        'about.p2': 'بصفته مدرباً ومستشاراً نخبوياً، ينقل إلى زملائه وطلابه دقة الحركة التقنية المليمترية، والاحترام المطلق للمنتج الخام، والجرأة الإبداعية.',
+        'about.stamp1': 'المطبخ الراقي',
+        'about.stamp1desc': 'معايير القصور',
+        'about.stamp2': 'النقل',
+        'about.stamp2desc': '+500 طالب مدرب',
+        'stats.stat1label': 'طلاب مدربين',
+        'stats.stat2label': 'سنوات من الخبرة',
+        'stats.stat3label': 'فعاليات طهوية',
+        'stats.stat4label': 'مطاعم مرافقة',
+        'gallery.tagline': 'الأجواء',
+        'gallery.title': 'الإبداعات والإنجازات',
+        'gallery.tag1': 'المطبخ المغربي',
+        'gallery.title1': 'الأرض الحديثة',
+        'gallery.tag2': 'المطبخ الدولي',
+        'gallery.title2': 'اندماجات معاصرة',
+        'gallery.tag3': 'الترتيب المهني',
+        'gallery.title3': 'هندسة الذوق',
+        'gallery.tag4': 'التكوينات الطهوية',
+        'gallery.title4': 'نقل تقنيات الماجستير',
+        'gallery.tag5': 'الفعاليات والخدمات',
+        'gallery.title5': 'عشاءات خاصة استثنائية',
+        'services.tagline': 'الخبرة',
+        'services.title': 'خدماتنا',
+        'services.desc': 'مجموعة، خمسة محاور خبرة في خدمة محترفي التكوين والمطاعم.',
+        'services.service1': 'مكتب الاستشارات',
+        'services.service1desc': 'التشخيص والاستراتيجية والمرافقة لهيكلة وتطوير نشاطك.',
+        'services.service2': 'مركز التكوين',
+        'services.service2desc': '6 تخصصات مهنية معتمدة، 70% ممارسة، مدربون خبراء من الميدان.',
+        'services.service3': 'التموين',
+        'services.service3desc': 'خدمات تموين مخصصة لحفلات زفافك، ندواتك وفعاليات شركتك.',
+        'services.service4': 'برنامج الإدارة',
+        'services.service4desc': 'أداة بسيطة وموثوقة لإدارة المخزون والفوترة والحجوزات يومياً.',
+        'services.service5': 'إنشاء القوائم',
+        'services.service5desc': 'تصميم بطاقات وقوائم مخصصة، متوافقة مع هويتك وأسعارك.',
+        'services.btn': 'عرض التفاصيل ←',
+        'formations.tagline': 'التميز',
+        'formations.title': 'تكويناتنا',
+        'formations.desc': 'تكوينات مهنية عملية لتطوير مهاراتك وبناء مستقبلك.',
+        'formations.formation1': 'قص الشعر والتجميل',
+        'formations.formation1desc': 'أتقن تقنيات القص والتلوين والعناية الجمالية للعمل في صالون أو افتتاح صالونك الخاص.',
+        'formations.formation2': 'الخياطة والتصميم',
+        'formations.formation2desc': 'من أخذ المقاسات إلى المجموعة النهائية: تعلم النمذجة والتركيب وإنشاء النماذج.',
+        'formations.formation3': 'الحلويات والطبخ',
+        'formations.formation3desc': 'الأساسيات المهنية للحلويات والمعجنات والمطبخ المغربي والعالمي.',
+        'formations.formation4': 'المعلوميات والأعمال المكتبية',
+        'formations.formation4desc': 'كن مستقلاً على الكمبيوتر: الأعمال المكتبية، الإنفوجرافيك، الويب والشبكات الاجتماعية المهنية.',
+        'formations.formation5': 'الكهرباء والصيانة',
+        'formations.formation5desc': 'تكوين 100% عملي في الورشة: التركيب، الإصلاح، التبريد والتكييف.',
+        'method.tagline': 'المقاربة',
+        'method.title': 'مركز واحد، منهجية واحدة',
+        'method.desc': 'في مركز فيات للتكوين، 70% من الوقت مخصص للممارسة. ورشنا المجهزة، مدربونا المحترفون ومتابعتنا الشخصية تسمح لكل متدرب بالخروج بمهارة حقيقية.',
+        'method.point1': 'ورش مجهزة ومجموعات صغيرة',
+        'method.point2': 'مدربون محترفون من الميدان',
+        'method.point3': 'تدريب في الشركات والمساعدة على الإدماج',
+        'method.point4': 'شهادات ودبلومات معترف بها',
+        'social.title': 'انضم إلى العالم الرقمي للشيف',
+        'social.instagram': 'إنستغرام',
+        'social.tiktok': 'تيك توك',
+        'social.facebook': 'فيسبوك',
+        'contact.tagline': 'الحجز',
+        'contact.title': 'أعط الحياة لمشاريعك الطهوية',
+        'contact.desc': 'لأي طلب لدرس خاص، استشارة للمطاعم أو التسجيل في التكوينات المهنية النخبوية.',
+        'contact.phone': 'الهاتف المباشر',
+        'contact.email': 'بريد الاستقبال',
+        'contact.location': 'ورش الطهوي — الدار البيضاء، المغرب',
+        'contact.name': 'الاسم الكامل',
+        'contact.emailfield': 'البريد الإلكتروني',
+        'contact.message': 'حدثني عن مشروعك الطهوي...',
+        'contact.submit': 'إرسال طلب الدراسة',
+        'contact.option1': 'المسار المهني (3 أشهر)',
+        'contact.option2': 'مسار التمهيد (شهر واحد)',
+        'contact.option3': 'مسار شيف ماجستير (6 أشهر)',
+        'contact.option4': 'استشارة القائمة / الفعاليات',
+        'footer.copy': '© 2024 فيات التكوين. جميع الحقوق محفوظة.'
+    }
+};
+
+let currentLang = 'fr';
+
+function switchLanguage(lang) {
+    currentLang = lang;
+    const html = document.documentElement;
+    
+    // Update HTML lang and dir attributes
+    html.setAttribute('lang', lang);
+    html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    
+    // Update font family for Arabic
+    if (lang === 'ar') {
+        document.body.style.fontFamily = 'var(--font-arabic), var(--font-sans), sans-serif';
+    } else {
+        document.body.style.fontFamily = 'var(--font-sans), sans-serif';
+    }
+    
+    // Update language buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Update all translatable elements
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.dataset.i18n;
+        if (translations[lang] && translations[lang][key]) {
+            element.innerHTML = translations[lang][key];
+        }
+    });
+    
+    // Update select options
+    document.querySelectorAll('select option[data-i18n]').forEach(option => {
+        const key = option.dataset.i18n;
+        if (translations[lang] && translations[lang][key]) {
+            option.textContent = translations[lang][key];
+        }
+    });
+    
+    // Save language preference to localStorage
+    localStorage.setItem('preferredLanguage', lang);
+}
+
+// Initialize language on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('preferredLanguage') || 'fr';
+    switchLanguage(savedLang);
+});
+
 const counters = document.querySelectorAll('.counter');
 
 const observer = new IntersectionObserver((entries)=>{
