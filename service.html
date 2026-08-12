@@ -144,8 +144,11 @@
             padding-right: 0;
         }
 
-        [dir="rtl"] .nav-flex {
-            flex-direction: row-reverse;
+        /* Desktop RTL only */
+        @media (min-width: 769px) {
+            [dir="rtl"] .nav-flex {
+                flex-direction: row-reverse;
+            }
         }
 
         [dir="rtl"] .service-split {
@@ -474,6 +477,95 @@
 
             .menu-links.show {
                 display: flex;
+            }
+
+            /* RTL Mobile - Force same structure as French */
+            [dir="rtl"] .menu-links {
+                flex-direction: column !important;
+                align-items: center !important;
+                left: 0 !important;
+                right: auto !important;
+            }
+
+            [dir="rtl"] .nav-flex {
+                flex-direction: row !important;
+                justify-content: space-between !important;
+            }
+
+            [dir="rtl"] .brand-identity {
+                flex-direction: row !important;
+            }
+
+            [dir="rtl"] .brand-identity span {
+                border-left: 1px solid rgba(13, 71, 161, 0.3) !important;
+                border-right: none !important;
+                padding-left: 12px !important;
+                padding-right: 0 !important;
+            }
+
+            /* RTL Mobile Fixes */
+            [dir="rtl"] .service-hero h1 {
+                font-size: 1.8rem;
+                line-height: 1.4;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            [dir="rtl"] .service-hero p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+                padding: 0 1rem;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            [dir="rtl"] .service-hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 280px;
+            }
+
+            [dir="rtl"] .btn {
+                width: 100%;
+                font-size: 14px;
+                padding: 0 16px;
+                white-space: normal;
+                word-wrap: break-word;
+            }
+
+            [dir="rtl"] .service-section h3 {
+                font-size: 1.2rem;
+                line-height: 1.4;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            [dir="rtl"] .service-section p {
+                font-size: 0.85rem;
+                line-height: 1.6;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            [dir="rtl"] .service-section ul li {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            [dir="rtl"] .info-box h3 {
+                font-size: 1.2rem;
+                line-height: 1.4;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            [dir="rtl"] .info-box p {
+                font-size: 0.85rem;
+                line-height: 1.6;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .service-hero {
@@ -927,7 +1019,7 @@
                 'service.infoTitle': 'معلومات',
                 'service.info': 'لمزيد من المعلومات أو للاستفادة من هذه الخدمة، لا تتردد في الاتصال بنا.',
                 'service.quote': 'طلب عرض سعر',
-                'footer.copy': '© 2024 فيات التكوين. جميع الحقوق محفوظة.'
+                'footer.copy': '© 2024 فتات التكوين. جميع الحقوق محفوظة.'
             }
         };
 
