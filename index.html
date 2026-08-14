@@ -427,7 +427,7 @@
             width: 100%;
             max-width: 1100px;
             margin: 0 auto;
-            padding: 70px 24px 80px;
+            padding: 120px 24px 80px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -474,19 +474,47 @@
         }
 
         .training-buttons {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 14px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
             width: 100%;
+            max-width: 900px;
+            margin: 0 auto 8px;
+        }
+
+        .training-buttons-last {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 24px;
+        }
+
+        .training-buttons .btn {
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        .training-buttons-last .btn {
+            width: calc(33.333% - 8px);
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        .register-button {
+            display: flex;
+            justify-content: center;
             margin-bottom: 42px;
         }
 
+        .register-button .btn {
+            min-width: 280px;
+        }
+
         .training-row {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
+            display: none;
         }
 
         .btn {
@@ -589,6 +617,23 @@
             pointer-events: none;
         }
 
+        @media (max-width: 1024px) {
+            .training-buttons {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 600px;
+            }
+
+            .training-buttons-last {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 600px;
+            }
+
+            .training-buttons-last .btn {
+                width: 100%;
+            }
+        }
+
         @media (max-width: 768px) {
             /* Mobile Header - Compact */
             .header-nav {
@@ -681,7 +726,7 @@
             }
 
             .hero-content {
-                padding: 20px 16px 25px;
+                padding: 80px 16px 25px;
                 max-width: none !important;
                 width: 100%;
                 margin: 0 !important;
@@ -721,17 +766,18 @@
                 text-align: center;
             }
 
-            .training-buttons {
-                gap: 8px;
-                margin-bottom: 16px;
+            .training-buttons,
+            .training-buttons-last {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-bottom: 8px;
                 width: 90%;
                 max-width: 320px;
             }
 
-            .training-row {
-                flex-direction: column;
-                width: 100%;
-                align-items: center;
+            .training-buttons-last .btn:nth-child(1) {
+                grid-column: auto;
             }
 
             .btn {
@@ -2078,19 +2124,14 @@
 
 .formations-grid{
     display:grid;
-    grid-template-columns:repeat(6, 1fr);
+    grid-template-columns:repeat(3, 1fr);
     gap:30px;
+    align-items: stretch;
 }
 
-.formation-card:nth-child(1),
-.formation-card:nth-child(2),
-.formation-card:nth-child(3){
-    grid-column: span 2;
-}
-
-.formation-card:nth-child(4),
-.formation-card:nth-child(5){
-    grid-column: span 3;
+.formation-card:nth-child(7),
+.formation-card:nth-child(8){
+    justify-self: center;
 }
 
 .formation-card{
@@ -2101,6 +2142,7 @@
     transition:all .4s var(--curve);
     display: flex;
     flex-direction: column;
+    height: 100%;
     border-radius:12px;
     box-shadow:0 4px 20px rgba(13, 71, 161, 0.08);
 }
@@ -2172,28 +2214,28 @@
 @media(max-width:1024px){
     .formations-grid{
         grid-template-columns:repeat(2, 1fr);
+        align-items: stretch;
     }
     
-    .formation-card:nth-child(1),
-    .formation-card:nth-child(2),
-    .formation-card:nth-child(3),
-    .formation-card:nth-child(4),
-    .formation-card:nth-child(5){
-        grid-column: span 1;
+    .formation-card:nth-child(7),
+    .formation-card:nth-child(8){
+        justify-self: stretch;
     }
 }
 
 @media(max-width:768px){
     .formations-grid{
         grid-template-columns:1fr;
+        align-items: stretch;
     }
     
-    .formation-card:nth-child(1),
-    .formation-card:nth-child(2),
-    .formation-card:nth-child(3),
-    .formation-card:nth-child(4),
-    .formation-card:nth-child(5){
-        grid-column: span 1;
+    .formation-card{
+        height: auto;
+    }
+    
+    .formation-card:nth-child(7),
+    .formation-card:nth-child(8){
+        justify-self: stretch;
     }
     
     .formation-card img{
@@ -2536,56 +2578,6 @@
         direction: rtl !important;
     }
 }
-
-/* ==========================================================
-   RTL MOBILE — HORIZONTAL SCROLL FIX ONLY
-   Do not change desktop or French mobile layout.
-   ========================================================== */
-@media (max-width: 768px) {
-    html[dir="rtl"] {
-        width: 100% !important;
-        max-width: 100% !important;
-        overflow-x: clip !important;
-        overflow-y: visible;
-    }
-
-    html[dir="rtl"] body {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        margin: 0 !important;
-        overflow-x: clip !important;
-        overflow-y: visible;
-        position: relative;
-    }
-
-    /* Keep every main page wrapper inside the phone viewport. */
-    html[dir="rtl"] .container,
-    html[dir="rtl"] .header-nav,
-    html[dir="rtl"] .nav-flex,
-    html[dir="rtl"] #hero,
-    html[dir="rtl"] .hero-content,
-    html[dir="rtl"] section,
-    html[dir="rtl"] footer {
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-    }
-
-    /* Prevent decorative absolute elements from increasing scroll width. */
-    html[dir="rtl"] .ambient-glow,
-    html[dir="rtl"] .hero-decorative-circle {
-        pointer-events: none !important;
-    }
-
-    /* The mobile menu must also stay inside the viewport. */
-    html[dir="rtl"] .menu-links {
-        width: 100% !important;
-        max-width: 100vw !important;
-        box-sizing: border-box !important;
-        overflow-x: hidden !important;
-    }
-}
-
 </style>
 
 </head>
@@ -2635,16 +2627,19 @@
             </p>
             
             <div class="training-buttons">
-                <div class="training-row">
-                    <a href="formation.html?f=coiffure" class="btn btn-primary" data-i18n="hero.btn.coiffure">Coiffure & Esthétique</a>
-                    <a href="formation.html?f=couture" class="btn btn-primary" data-i18n="hero.btn.couture">Couture & Stylisme</a>
-                    <a href="formation.html?f=patisserie" class="btn btn-secondary" data-i18n="hero.btn.patisserie">Pâtisserie & Cuisine</a>
-                    <a href="formation.html?f=informatique" class="btn btn-secondary" data-i18n="hero.btn.informatique">Informatique & Bureautique</a>
-                </div>
-                <div class="training-row">
-                    <a href="formation.html?f=electricite" class="btn btn-secondary" data-i18n="hero.btn.electricite">Électricité & Maintenance</a>
-                    <a href="#contact" class="btn btn-cta" data-i18n="hero.btn.register">S'inscrire maintenant →</a>
-                </div>
+                <a href="formation.html?f=gastronomie" class="btn btn-primary" data-i18n="hero.btn.gastronomie">La gastronomie mondiale</a>
+                <a href="formation.html?f=cuisine" class="btn btn-primary" data-i18n="hero.btn.cuisine">Cuisine internationale</a>
+                <a href="formation.html?f=patisserie" class="btn btn-secondary" data-i18n="hero.btn.patisserie">Pâtisserie moderne</a>
+                <a href="formation.html?f=boucherie" class="btn btn-secondary" data-i18n="hero.btn.boucherie">Boucherie moderne</a>
+                <a href="formation.html?f=gateaux" class="btn btn-secondary" data-i18n="hero.btn.gateaux">Gâteaux marocains</a>
+                <a href="formation.html?f=restaurant" class="btn btn-secondary" data-i18n="hero.btn.restaurant">Service de restaurant</a>
+            </div>
+            <div class="training-buttons training-buttons-last">
+                <a href="formation.html?f=reception" class="btn btn-secondary" data-i18n="hero.btn.reception">Réception hôtelière</a>
+                <a href="formation.html?f=langues" class="btn btn-secondary" data-i18n="hero.btn.langues">Langues</a>
+            </div>
+            <div class="register-button">
+                <a href="#contact" class="btn btn-cta" data-i18n="hero.btn.register">S'inscrire maintenant →</a>
             </div>
 
             <div class="hero-stats">
@@ -2963,13 +2958,13 @@
             <div class="formations-grid">
 
                 <div class="formation-card">
-                    <img src="images/Coiffure%20%26%20Esth%C3%A9tique.png">
+                    <img src="images/La gastronomie mondiale.png">
                     <div class="formation-content">
-                        <h3 data-i18n="formations.formation1">Coiffure & Esthétique</h3>
+                        <h3 data-i18n="formations.formation1">La gastronomie mondiale</h3>
                         <p data-i18n="formations.formation1desc">
-                            Maîtrisez les techniques de coupe, de coloration et de soins esthétiques pour travailler en salon ou ouvrir le vôtre.
+                            Gestion d'établissement, gestion de stockage, création de fiches techniques et marketing culinaire.
                         </p>
-                        <a href="formation.html?f=coiffure"
+                        <a href="formation.html?f=gastronomie"
                            class="btn btn-outline" data-i18n="services.btn">
                            Voir les détails →
                         </a>
@@ -2977,13 +2972,13 @@
                 </div>
 
                 <div class="formation-card">
-                    <img src="images/Couture%20%26%20Stylisme.png">
+                    <img src="images/Cuisine internationale.png">
                     <div class="formation-content">
-                        <h3 data-i18n="formations.formation2">Couture & Stylisme</h3>
+                        <h3 data-i18n="formations.formation2">Cuisine internationale</h3>
                         <p data-i18n="formations.formation2desc">
-                            De la prise de mesures à la collection finie : apprenez le patronage, le montage et la création de modèles.
+                            Maîtrisez les techniques de cuisine internationale et marocaine de haut niveau.
                         </p>
-                        <a href="formation.html?f=couture"
+                        <a href="formation.html?f=cuisine"
                            class="btn btn-outline" data-i18n="services.btn">
                            Voir les détails →
                         </a>
@@ -2991,11 +2986,11 @@
                 </div>
 
                 <div class="formation-card">
-                    <img src="images/P%C3%A2tisserie%20%26%20Cuisine.png">
+                    <img src="images/Pâtisserie moderne.png">
                     <div class="formation-content">
-                        <h3 data-i18n="formations.formation3">Pâtisserie & Cuisine</h3>
+                        <h3 data-i18n="formations.formation3">Pâtisserie moderne</h3>
                         <p data-i18n="formations.formation3desc">
-                            Bases professionnelles de la pâtisserie, de la viennoiserie et de la cuisine marocaine et internationale.
+                            Maîtrisez les techniques de pâtisserie moderne, des pâtes de base aux desserts à l'assiette.
                         </p>
                         <a href="formation.html?f=patisserie"
                            class="btn btn-outline" data-i18n="services.btn">
@@ -3005,13 +3000,13 @@
                 </div>
 
                 <div class="formation-card">
-                    <img src="images/Informatique%20%26%20Bureautiqu.png">
+                    <img src="images/Boucherie.png">
                     <div class="formation-content">
-                        <h3 data-i18n="formations.formation4">Informatique & Bureautique</h3>
+                        <h3 data-i18n="formations.formation4">Boucherie moderne</h3>
                         <p data-i18n="formations.formation4desc">
-                            Devenez autonome sur l'ordinateur : bureautique, infographie, web et réseaux sociaux professionnels.
+                            Maîtrisez l'art de la boucherie : de la réception des viandes à la présentation finale.
                         </p>
-                        <a href="formation.html?f=informatique"
+                        <a href="formation.html?f=boucherie"
                            class="btn btn-outline" data-i18n="services.btn">
                            Voir les détails →
                         </a>
@@ -3019,13 +3014,55 @@
                 </div>
 
                 <div class="formation-card">
-                    <img src="images/%C3%89lectricit%C3%A9%20%26%20Maintenanc.png">
+                    <img src="images/Gâteaux marocains.png">
                     <div class="formation-content">
-                        <h3 data-i18n="formations.formation5">Électricité & Maintenance</h3>
+                        <h3 data-i18n="formations.formation5">Gâteaux marocains</h3>
                         <p data-i18n="formations.formation5desc">
-                            Formation 100% pratique en atelier : installation, dépannage, froid et climatisation.
+                            Maîtrisez l'art de la pâtisserie marocaine traditionnelle : ghriba, cornes de gazelle, chebakia et plus.
                         </p>
-                        <a href="formation.html?f=electricite"
+                        <a href="formation.html?f=gateaux"
+                           class="btn btn-outline" data-i18n="services.btn">
+                           Voir les détails →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="formation-card">
+                    <img src="images/Agent de restaurant.png">
+                    <div class="formation-content">
+                        <h3 data-i18n="formations.formation6">Service de restaurant</h3>
+                        <p data-i18n="formations.formation6desc">
+                            Devenez un professionnel du service en salle : accueil, commande, service et relation client.
+                        </p>
+                        <a href="formation.html?f=restaurant"
+                           class="btn btn-outline" data-i18n="services.btn">
+                           Voir les détails →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="formation-card">
+                    <img src="images/Réception hôtelière.png">
+                    <div class="formation-content">
+                        <h3 data-i18n="formations.formation7">Réception hôtelière</h3>
+                        <p data-i18n="formations.formation7desc">
+                            Devenez un professionnel de l'accueil hôtelier : réservation, check-in, relation client.
+                        </p>
+                        <a href="formation.html?f=reception"
+                           class="btn btn-outline" data-i18n="services.btn">
+                           Voir les détails →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="formation-card">
+                    <img src="images/Langues.png">
+                    <div class="formation-content">
+                        <h3 data-i18n="formations.formation8">Langues</h3>
+                        <p data-i18n="formations.formation8desc">
+                            Développez vos compétences linguistiques et professionnelles pour mieux communiquer, accueillir les clients et évoluer dans un environnement de travail national ou international.
+                        </p>
+                        <a href="formation.html?f=langues"
                            class="btn btn-outline" data-i18n="services.btn">
                            Voir les détails →
                         </a>
@@ -3170,11 +3207,14 @@ const translations = {
         'hero.badge': 'CENTRE DE FORMATION AGREE',
         'hero.title': 'FORMEZ-VOUS AUX MÉTIERS QUI<br>RECRUTENT',
         'hero.description': 'FITAT Formation accompagne les jeunes et les professionnels avec des parcours pratiques, encadrés par des formateurs experts et orientés vers l\'emploi.',
-        'hero.btn.coiffure': 'Coiffure & Esthétique',
-        'hero.btn.couture': 'Couture & Stylisme',
-        'hero.btn.patisserie': 'Pâtisserie & Cuisine',
-        'hero.btn.informatique': 'Informatique & Bureautique',
-        'hero.btn.electricite': 'Électricité & Maintenance',
+        'hero.btn.gastronomie': 'La gastronomie mondiale',
+        'hero.btn.cuisine': 'Cuisine internationale',
+        'hero.btn.patisserie': 'Pâtisserie moderne',
+        'hero.btn.boucherie': 'Boucherie moderne',
+        'hero.btn.restaurant': 'Service de restaurant',
+        'hero.btn.reception': 'Réception hôtelière',
+        'hero.btn.gateaux': 'Gâteaux marocains',
+        'hero.btn.langues': 'Langues',
         'hero.btn.register': 'S\'inscrire maintenant →',
         'hero.stat1': '+1200',
         'hero.stat1label': 'STAGIAIRES FORMÉS',
@@ -3223,16 +3263,22 @@ const translations = {
         'formations.tagline': 'Excellence',
         'formations.title': 'NOS FORMATIONS',
         'formations.desc': 'Des formations professionnelles pratiques pour développer vos compétences et construire votre avenir.',
-        'formations.formation1': 'Coiffure & Esthétique',
-        'formations.formation1desc': 'Maîtrisez les techniques de coupe, de coloration et de soins esthétiques pour travailler en salon ou ouvrir le vôtre.',
-        'formations.formation2': 'Couture & Stylisme',
-        'formations.formation2desc': 'De la prise de mesures à la collection finie : apprenez le patronage, le montage et la création de modèles.',
-        'formations.formation3': 'Pâtisserie & Cuisine',
-        'formations.formation3desc': 'Bases professionnelles de la pâtisserie, de la viennoiserie et de la cuisine marocaine et internationale.',
-        'formations.formation4': 'Informatique & Bureautique',
-        'formations.formation4desc': 'Devenez autonome sur l\'ordinateur : bureautique, infographie, web et réseaux sociaux professionnels.',
-        'formations.formation5': 'Électricité & Maintenance',
-        'formations.formation5desc': 'Formation 100% pratique en atelier : installation, dépannage, froid et climatisation.',
+        'formations.formation1': 'La gastronomie mondiale',
+        'formations.formation1desc': 'Gestion d\'établissement, gestion de stockage, création de fiches techniques et marketing culinaire.',
+        'formations.formation2': 'Cuisine internationale',
+        'formations.formation2desc': 'Maîtrisez les techniques de cuisine internationale et marocaine de haut niveau.',
+        'formations.formation3': 'Pâtisserie moderne',
+        'formations.formation3desc': 'Maîtrisez les techniques de pâtisserie moderne, des pâtes de base aux desserts à l\'assiette.',
+        'formations.formation4': 'Boucherie moderne',
+        'formations.formation4desc': 'Maîtrisez l\'art de la boucherie : de la réception des viandes à la présentation finale.',
+        'formations.formation5': 'Gâteaux marocains',
+        'formations.formation5desc': 'Maîtrisez l\'art de la pâtisserie marocaine traditionnelle : ghriba, cornes de gazelle, chebakia et plus.',
+        'formations.formation6': 'Service de restaurant',
+        'formations.formation6desc': 'Devenez un professionnel du service en salle : accueil, commande, service et relation client.',
+        'formations.formation7': 'Réception hôtelière',
+        'formations.formation7desc': 'Devenez un professionnel de l\'accueil hôtelier : réservation, check-in, relation client.',
+        'formations.formation8': 'Langues',
+        'formations.formation8desc': 'Développez vos compétences linguistiques et professionnelles pour mieux communiquer, accueillir les clients et évoluer dans un environnement de travail national ou international.',
         'method.tagline': 'Approche',
         'method.title': 'UN CENTRE, UNE MÉTHODE',
         'method.desc': 'Chez FITAT Formation, 70% du temps est consacré à la pratique. Nos ateliers équipés, nos formateurs professionnels et notre suivi personnalisé permettent à chaque stagiaire de sortir avec un vrai savoir-faire.',
@@ -3269,11 +3315,14 @@ const translations = {
         'hero.badge': 'مركز تكوين معتمد',
         'hero.title': 'تدرب على المهن التي توظف',
         'hero.description': 'يرافق مركز فتات للتكوين الشباب والمحترفين بمسارات عملية، تحت إشراف مدربين خبراء وموجهة نحو التوظيف.',
-        'hero.btn.coiffure': 'الحلاقة والتجميل',
-        'hero.btn.couture': 'الخياطة والتصميم',
-        'hero.btn.patisserie': 'الحلويات والطبخ',
-        'hero.btn.informatique': 'المعلوميات والأعمال المكتبية',
-        'hero.btn.electricite': 'الكهرباء والصيانة',
+        'hero.btn.gastronomie': 'فنون الطهي العالمية',
+        'hero.btn.cuisine': 'المطبخ الدولي',
+        'hero.btn.patisserie': 'فن الحلويات العصرية',
+        'hero.btn.boucherie': 'الجزارة العصرية',
+        'hero.btn.gateaux': 'الحلويات المغربية التقليدية',
+        'hero.btn.restaurant': 'خدمات المطاعم',
+        'hero.btn.reception': 'الاستقبال الفندقي',
+        'hero.btn.langues': 'اللغات الدولية',
         'hero.btn.register': 'سجل الآن ←',
         'hero.stat1': '+1200',
         'hero.stat1label': 'متدرب مدرب',
@@ -3322,16 +3371,22 @@ const translations = {
         'formations.tagline': 'التميز',
         'formations.title': 'تكويناتنا',
         'formations.desc': 'تكوينات مهنية عملية لتطوير مهاراتك وبناء مستقبلك.',
-        'formations.formation1': 'الحلاقة والتجميل',
-        'formations.formation1desc': 'أتقن تقنيات القص والتلوين والعناية الجمالية للعمل في صالون أو افتتاح صالونك الخاص.',
-        'formations.formation2': 'الخياطة والتصميم',
-        'formations.formation2desc': 'من أخذ المقاسات إلى المجموعة النهائية: تعلم النمذجة والتركيب وإنشاء النماذج.',
-        'formations.formation3': 'الحلويات والطبخ',
-        'formations.formation3desc': 'الأساسيات المهنية للحلويات والمعجنات والمطبخ المغربي والعالمي.',
-        'formations.formation4': 'المعلوميات والأعمال المكتبية',
-        'formations.formation4desc': 'كن مستقلاً على الكمبيوتر: الأعمال المكتبية، الإنفوجرافيك، الويب والشبكات الاجتماعية المهنية.',
-        'formations.formation5': 'الكهرباء والصيانة',
-        'formations.formation5desc': 'تكوين 100% عملي في الورشة: التركيب، الإصلاح، التبريد والتكييف.',
+        'formations.formation1': 'فنون الطهي العالمية',
+        'formations.formation1desc': 'إدارة المؤسسات، إدارة التخزين، إنشاء البطاقات التقنية والتسويق الطهوي.',
+        'formations.formation2': 'المطبخ الدولي',
+        'formations.formation2desc': 'أتقن تقنيات المطبخ العالمي والمغربي بمستوى عالٍ.',
+        'formations.formation3': 'فن الحلويات العصرية',
+        'formations.formation3desc': 'أتقن تقنيات الحلويات الحديثة من العجائن الأساسية إلى الحلويات في الطبق.',
+        'formations.formation4': 'الجزارة العصرية',
+        'formations.formation4desc': 'أتقن فن الجزارة: من استلام اللحوم إلى العرض النهائي.',
+        'formations.formation5': 'الحلويات المغربية التقليدية',
+        'formations.formation5desc': 'أتقن فن الحلويات المغربية التقليدية: الغريبة، قرون الغزال، الشباكية والمزيد.',
+        'formations.formation6': 'خدمات المطاعم',
+        'formations.formation6desc': 'كن محترفاً في خدمة القاعة: الاستقبال، الطلب، الخدمة وعلاقة العملاء.',
+        'formations.formation7': 'الاستقبال الفندقي',
+        'formations.formation7desc': 'كن محترفاً في الاستقبال الفندقي: الحجز، تسجيل الوصول، علاقة العملاء.',
+        'formations.formation8': 'اللغات الدولية',
+        'formations.formation8desc': 'طور مهاراتك اللغوية والمهنية للتواصل بشكل أفضل، استقبال العملاء والتطور في بيئة عمل وطنية أو دولية.',
         'method.tagline': 'المقاربة',
         'method.title': 'مركز واحد، منهجية واحدة',
         'method.desc': 'في مركز فتات للتكوين، 70% من الوقت مخصص للممارسة. ورشنا المجهزة، مدربونا المحترفون ومتابعتنا الشخصية تسمح لكل متدرب بالخروج بمهارة حقيقية.',
